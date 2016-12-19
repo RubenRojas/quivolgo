@@ -1,0 +1,67 @@
+
+/**************************
+	NOTIFICATIONS
+**************************/
+.notificacion{
+	width: 400px;
+    border: 1px solid #484848;
+    border-radius: 0px;
+    position: absolute;
+    bottom: 40px;
+    left: -530px;
+    opacity: 0;
+    z-index: 100;
+    -webkit-transition: all .5s ease .3s;
+    -o-transition: all .5s ease .3s;
+    transition: all .5s ease .3s;
+    background-color: #1f1f1f;
+    height: 80px;
+    color: #FFF;
+    padding: 5px;
+}
+.SUCCESS{
+    /*background: rgba(0, 150, 136, 0.12);*/
+    margin: 0;
+    height: 100%;
+    display: -webkit-box;
+}
+.WARNING{
+    /*background: rgba(255, 235, 59, 0.12);*/
+    margin: 0;
+    height: 100%;
+    display: -webkit-box;
+}
+.ERROR{
+    /*background: rgba(244, 67, 54, 0.08);*/
+    margin: 0;
+    height: 100%;
+    display: -webkit-box;
+}
+
+.notificacion .icono{
+	width: 20%;
+	padding-left: 16px
+}
+.notificacion .icono img{
+	height: 50px;
+}
+.notificacion .mensaje{
+    width: 95%;
+    margin-top: 0;
+    padding-top: 0;
+    padding-right: 20px;
+    margin-left: 6px;
+    margin-top: 1%;
+}
+.notificacion .mensaje p{
+    font-size: 1em;    
+    color: #eeeeee;
+    font-weight: 300;
+    letter-spacing: 0.0125em;
+}
+
+.notificacion.show{
+	left: 2px;
+    opacity: 1;
+    padding-left: 6px;
+}

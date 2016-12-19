@@ -1,0 +1,75 @@
+@media print{
+	nav, .hide-on-print, .filtros, .btn{
+		display: none !important;
+	}
+	.detalle_filtro{
+		display: inline !important;
+	}
+	.dato{
+		border: 1px solid #dcdcdc;
+	    padding: 1px;
+	    font-size: 11px;
+	    height: 19px;
+	    min-height: 0;
+	    color: #000;
+	}
+	.row .col{
+		margin-top: 8px;
+	}
+	*{
+		box-shadow: none !important;
+	}
+	.container, .container_form{
+		width: 99% !important;
+		display: block;
+		margin: auto;
+		
+		padding: 0 !important;
+	}
+	table tbody tr td{
+		padding: 2px !important;
+	}
+	.trabajos_realizado .row .col input, .lubricante_nombre, .trabajos_realizado .row .col span.dato {
+	    height: 20px;
+	    border: 1px solid #dcdcdc;
+	    font-size: 0.85em;
+	    padding-left: 2px;
+	    margin: 2px;
+	    line-height: : 1;
+	}
+	label{
+		font-size: .8em !important;
+		margin-bottom: 2px;
+	}
+	.final_detalle_intervencion{
+		margin-top: 43px;
+	    border: 1px solid #dcdcdc;
+	    padding: 8px !important;
+	}
+	.trabajos_realizado .row .col {
+	    padding: 0px 0px;
+	    margin-left: -5px;
+	    margin-bottom: -5px;
+	}
+
+
+	h3{
+		font-size: 2em;
+		margin-top: 0;
+		margin-bottom: 10px;
+	}
+
+	.mantencion .dato {
+	    background: #eaeaea;
+	    font-size: .8em;
+	    min-height: 17px;
+	    height: 17px;
+	    line-height: 0.8;
+	}
+	.detalle_trabajos table tbody tr td {
+		font-size: .7em;
+		padding: 0px !important;
+		padding-left: 4px !important;
+	}
+	
+}

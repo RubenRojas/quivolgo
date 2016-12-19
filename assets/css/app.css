@@ -1,0 +1,100 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,700');
+*{
+	font-family: 'Open Sans', sans-serif;
+}
+
+#listado thead th{
+	text-align: center !important;
+}
+#loginContainer{
+	background: url(../img/wall.jpg);
+	width: 100%;
+	height: 100%;
+}
+.container{
+	width: 90%;
+	max-width: 1280px;
+}
+.dato{
+	display: block;
+	background: aliceblue;
+	padding: 6px;
+	margin-top: 5px;
+	margin-bottom: 10px;
+	min-height: 35px;
+	font-size: .95em;
+}
+label {
+    color: #151515 !important;
+    font-size: 1em !important;
+}
+.btn_nuevo{
+	margin-bottom: 20px;
+}
+#listado{
+	border: 1px solid #dcdcdc;
+}
+#listado tbody tr td, #listado thead th{
+	border-left: 1px solid #dcdcdc;
+	padding: 5px;
+}
+.detalle_filtro{
+		display: none !important;
+
+}
+
+.trabajos_realizado .row{
+	margin-bottom: 0;
+}
+.trabajos_realizado .row .col{
+	    padding: 0px 2px;
+    margin-left: 0px;
+    margin-bottom: -5px;
+}
+
+.trabajos_realizado .row .col input, .lubricante_nombre, .trabajos_realizado .row .col span.dato{
+	height: 20px;
+    border: 1px solid;
+    font-size: 0.85em;    
+    margin: 2px;
+}
+.lubricante_nombre{
+	
+    height: 22px;
+}
+.container_form{
+	width: 80%;
+	max-width: 1280px;
+	display: block;
+	margin: auto;
+}
+
+.mantencion{
+	border: 1px solid #dcdcdc;
+	padding: 15px;
+}
+.detalle_trabajos table{
+	    border: 1px solid #dcdcdc;
+}
+.detalle_trabajos table th{
+	padding: 0;
+    font-size: 0.8em;
+    border-bottom: 1px solid #dcdcdc;
+    border-left: 1px solid #dcdcdc;
+    text-align: center;
+    background: #ececec;
+}
+.detalle_trabajos table tbody tr td{
+	padding: 0;
+    font-size: 0.8em;
+    border-bottom: 1px solid #dcdcdc;
+    border-left: 1px solid #dcdcdc;
+    padding-left: 5px;
+}
+.mantencion .dato{
+	    background: #eaeaea;
+    font-size: .8em;
+    min-height: 17px;
+    height: 17px;
+    line-height: 0.5;
+}
