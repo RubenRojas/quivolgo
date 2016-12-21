@@ -1,6 +1,6 @@
 <?php
-if(is_dir("/home4/alvarube/public_html/quivolgo")){
-	$baseDir = "/home4/alvarube/public_html/quivolgo/includes/";
+if(is_dir("/home4/alvarube/public_html/telios/quivolgo")){
+	$baseDir = "/home4/alvarube/public_html/telios/quivolgo/includes/";
 }
 else{
 	$baseDir = "c:/wamp/www/quivolgo/includes/";
@@ -10,6 +10,7 @@ include($baseDir."conexion.php");
 extract($_POST);
 
 $query = "select * from app_usuario where correo='$correo' and pass='$pass' limit 1";
+
 $result = $mysqli->query($query);
 
 if($result->num_rows > 0){

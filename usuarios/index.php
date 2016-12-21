@@ -1,6 +1,6 @@
 <?php
-if(is_dir("/home4/alvarube/public_html/quivolgo")){
-	$baseDir = "/home4/alvarube/public_html/quivolgo/includes/";
+if(is_dir("/home4/alvarube/public_html/telios/quivolgo")){
+	$baseDir = "/home4/alvarube/public_html/telios/quivolgo/includes/";
 }
 else{
 	$baseDir = "c:/wamp/www/quivolgo/includes/";

@@ -1,6 +1,6 @@
 <?php
-if(is_dir("/home4/alvarube/public_html/quivolgo")){
-	$baseDir = "/home4/alvarube/public_html/quivolgo/includes/";
+if(is_dir("/home4/alvarube/public_html/telios/quivolgo")){
+	$baseDir = "/home4/alvarube/public_html/telios/quivolgo/includes/";
 }
 else{
 	$baseDir = "c:/wamp/www/quivolgo/includes/";
@@ -28,7 +28,7 @@ print_head();
 		}
 		else{
 			?>
-			<a href="/quivolgo/maquinaria/index.php" class="btn teal" style="display: block; margin: auto; width: 250px; margin-top: 110px; ">Continuar</a>
+			<a href="/quivolgo/index.php" class="btn teal" style="display: block; margin: auto; width: 250px; margin-top: 110px; ">Continuar</a>
 			<?php	
 		}
 		?>

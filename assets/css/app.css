@@ -3,7 +3,7 @@
 	font-family: 'Open Sans', sans-serif;
 }
 
-#listado thead th{
+table thead th{
 	text-align: center !important;
 }
 #loginContainer{
@@ -14,6 +14,13 @@
 .container{
 	width: 90%;
 	max-width: 1280px;
+}
+.container_form{
+	width: 100%;
+	max-width: 1280px;
+	display: block;
+	margin: auto;
+
 }
 .dato{
 	display: block;
@@ -31,70 +38,37 @@ label {
 .btn_nuevo{
 	margin-bottom: 20px;
 }
-#listado{
+#listado,
+#listado_no_dataTable{
 	border: 1px solid #dcdcdc;
 }
-#listado tbody tr td, #listado thead th{
+#listado tbody tr td,
+#listado thead th,
+#listado_no_dataTable tbody tr td,
+#listado_no_dataTable thead th{
 	border-left: 1px solid #dcdcdc;
+	border-bottom: 1px solid #dcdcdc;
 	padding: 5px;
 }
-.detalle_filtro{
-		display: none !important;
-
+#form_instalacion .row h5{
+	margin-bottom: 20px;
 }
-
-.trabajos_realizado .row{
-	margin-bottom: 0;
+#form_instalacion .row{
+	background: #fff;
+	border: 1px solid #979797;
+	padding: 20px;
+	border-radius: 5px;
 }
-.trabajos_realizado .row .col{
-	    padding: 0px 2px;
-    margin-left: 0px;
-    margin-bottom: -5px;
+input[type=text]:disabled{
+	color: #333;
 }
-
-.trabajos_realizado .row .col input, .lubricante_nombre, .trabajos_realizado .row .col span.dato{
-	height: 20px;
-    border: 1px solid;
-    font-size: 0.85em;    
-    margin: 2px;
-}
-.lubricante_nombre{
-	
-    height: 22px;
-}
-.container_form{
-	width: 80%;
-	max-width: 1280px;
+span.info{
 	display: block;
-	margin: auto;
+    border-bottom: 1px solid #9E9E9E;
+    padding-bottom: 6px;
+    margin-top: 9px;
 }
 
-.mantencion{
-	border: 1px solid #dcdcdc;
-	padding: 15px;
-}
-.detalle_trabajos table{
-	    border: 1px solid #dcdcdc;
-}
-.detalle_trabajos table th{
-	padding: 0;
-    font-size: 0.8em;
-    border-bottom: 1px solid #dcdcdc;
-    border-left: 1px solid #dcdcdc;
-    text-align: center;
-    background: #ececec;
-}
-.detalle_trabajos table tbody tr td{
-	padding: 0;
-    font-size: 0.8em;
-    border-bottom: 1px solid #dcdcdc;
-    border-left: 1px solid #dcdcdc;
-    padding-left: 5px;
-}
-.mantencion .dato{
-	    background: #eaeaea;
-    font-size: .8em;
-    min-height: 17px;
-    height: 17px;
-    line-height: 0.5;
-}
+
+
+

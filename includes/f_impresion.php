@@ -24,6 +24,9 @@ function print_head(){
     <script type="text/javascript" src="/quivolgo/assets/js/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="/quivolgo/assets/js/notif.js"></script>
     <script type="text/javascript" src="/quivolgo/assets/js/wow.min.js"></script>
+    <script type="text/javascript" src="/quivolgo/assets/js/sweetalert.min.js"></script>
+
+    <script type="text/javascript" src="/quivolgo/ajax/ajax.js"></script>
     
 
     <!-- <link rel="icon" href="/quivolgo/assets/img/favicon.png" sizes="32x32"> -->
@@ -59,12 +62,14 @@ function print_menu(){
 	<ul id="dropdown1" class="dropdown-content">
 		<li><a href="/quivolgo/usuarios/index.php">Usuarios</a></li>		
 		<li><a href="/quivolgo/app_campo_origen/index.php">Campo Origen</a></li>	
+		<li><a href="/quivolgo/cod_mat_get/index.php">Codigo Mat. Gen.</a></li>	
 		<li><a href="/quivolgo/app_contenedor/index.php">Contenedor</a></li>	
 		<li><a href="/quivolgo/app_coordinador/index.php">Coordinador</a></li>	
 		<li><a href="/quivolgo/app_especie/index.php">Especie</a></li>	
 		<li><a href="/quivolgo/app_estado_planta/index.php">Estado Planta</a></li>	
 		<li><a href="/quivolgo/app_instalador/index.php">Instalador</a></li>	
-		<li><a href="/quivolgo/app_meson/index.php">Meson</a></li>	
+		<li><a href="/quivolgo/madres/index.php">Madres</a></li>	
+		<!--<li><a href="/quivolgo/app_meson/index.php">Meson</a></li>	-->
 		<li><a href="/quivolgo/app_nave/index.php">Nave</a></li>	
 		<li><a href="/quivolgo/app_origen_genetico/index.php">Origen Genetico</a></li>	
 		<li><a href="/quivolgo/app_propagacion/index.php">Propagacion</a></li>	
@@ -88,8 +93,8 @@ function print_menu(){
 	-->
 
 	<ul id="dropdownInstalaciones" class="dropdown-content">
-		<li><a href="/quivolgo/usuarios/index.php">Registrar</a></li>		
-		<li><a href="/quivolgo/usuarios/index.php">Vista General</a></li>		
+		<li><a href="/quivolgo/instalaciones/registrar.php">Registrar</a></li>		
+		<li><a href="/quivolgo/instalaciones/index.php">Vista General</a></li>		
 	</ul>
 
 	<nav>

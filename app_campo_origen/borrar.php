@@ -1,6 +1,6 @@
 <?php
-if(is_dir("/home4/alvarube/public_html/quivolgo")){
-	$baseDir = "/home4/alvarube/public_html/quivolgo/includes/";
+if(is_dir("/home4/alvarube/public_html/telios/quivolgo")){
+	$baseDir = "/home4/alvarube/public_html/telios/quivolgo/includes/";
 }
 else{
 	$baseDir = "c:/wamp/www/quivolgo/includes/";
@@ -18,7 +18,7 @@ else{
 
 if(!in_array("4", $pUser)){
 	$_SESSION['error']['mensaje'] = "No estás autorizado a acceder a esta pagina";
-	$_SESSION['error']['location'] = "/quivolgo/usuarios/index.php";
+	$_SESSION['error']['location'] = "/quivolgo/app_campo_origen/index.php";
 	header("location: /quivolgo/error/index.php");
 }
 print_head();

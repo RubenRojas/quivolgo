@@ -17,8 +17,8 @@ date_default_timezone_set('Etc/GMT+3');
 /*************************************************/
 //	INTEGRACION FUNCIONES
 /*************************************************/
-if(is_dir("/home4/alvarube/public_html/quivolgo")){
-	$baseDir = "/home4/alvarube/public_html/quivolgo/includes/";
+if(is_dir("/home4/alvarube/public_html/telios/quivolgo")){
+	$baseDir = "/home4/alvarube/public_html/telios/quivolgo/includes/";
 }
 else{
 	$baseDir = "c:/wamp/www/quivolgo/includes/";
@@ -38,11 +38,12 @@ include($baseDir."data/objeto.php");
 /*************************************************/
 $host="localhost";
 $user= "alvarube";
-$pass="capuccinop650A";
+$pass="capuccino650A";
 $database="alvarube_quivolgo";
 $mysqli = @new mysqli($host, $user, $pass, $database);
 if ($mysqli->connect_errno) {
-    $mysqli = @new mysqli($host, "root", "", "quivolgo");
+    //$mysqli = @new mysqli($host, "root", "root", "centraltaxi");
+    echo' error de conexion bd<br>';
 }
 /*************************************************/
 //	VARIABLES PARA LA APP
