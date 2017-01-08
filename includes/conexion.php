@@ -26,7 +26,7 @@ else{
 include($baseDir."f_utilitarias.php");
 include($baseDir."f_impresion.php");
 include($baseDir."general.php");
-include($baseDir."notificacion.php");
+
 
 
 include($baseDir."data/usuario.php");

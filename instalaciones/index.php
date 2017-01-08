@@ -32,23 +32,32 @@ instalacion.cod_instalacion,
 instalacion.fecha,
 instalacion.nipla,
 instalacion.meson,
-madre.cod_desc, 
+instalacion.cod_mat_gen,
+cod_mat_gen.id as id_cod_mat_gen,
 app_estado.nombre as estado,
 app_sector.nombre as sector,
+app_temporada.nombre as temporada,
 app_nave.nombre as nave,
+app_especie.nombre as especie,
+madre.fecha_plantacion as anio,
+app_propagacion.nombre as tipo_propagacion
 
 
 from instalacion 
-
+left join madre on madre.id = instalacion.madre
 left join app_estado on app_estado.id = instalacion.estado
 left join app_nave on app_nave.id = instalacion.nave
 left join app_sector on app_sector.id = instalacion.sector
+left join app_temporada on app_temporada.id = instalacion.temporada
+left join cod_mat_gen on cod_mat_gen.id = madre.id_cod_mat_gen
+left join app_especie on app_especie.id = cod_mat_gen.especie
+left join app_propagacion on app_propagacion.id = madre.tipo_propagacion
 
-left join madre on madre.id = instalacion.madre
 
 order by madre.id asc";
 
 $result = $mysqli->query($query);
+
 
 ?>
 <div class="container">
@@ -58,11 +67,15 @@ $result = $mysqli->query($query);
 		<thead>
 			<th>Cod.</th>
 			<th>Fecha</th>
-			<th>Cod. Madre</th>
+			<th>Cod. Mat. Gen</th>
 			<th>Estado</th>
 			<th>NIPLA</th>
+			<th>Tempo.</th>
+			<th>Especie</th>
+			<th>T. Prop.</th>
 			<th>Sector</th>
 			<th>Nave</th>
+			<th>Año Madre</th>
 			<th>Meson</th>			
 			<th>Editar</th>
 			<th>Borrar</th>
@@ -73,16 +86,20 @@ $result = $mysqli->query($query);
 	while ($arr = $result->fetch_assoc()) {
 		?>
 			<tr>
-				<td><?=$arr['cod_instalacion']?></td>
-				<td><?=$arr['fecha']?></td>
-				<td><?=$arr['cod_desc']?></td>
-				<td><?=$arr['estado']?></td>
-				<td><?=$arr['nipla']?></td>
-				<td><?=$arr['sector']?></td>
-				<td><?=$arr['nave']?></td>
-				<td><?=$arr['meson']?></td>
-				<td><a href="editar.php?id=<?=$arr['id']?>">Editar</a></td>
-				<td><a href="borrar.php?id=<?=$arr['id']?>">Borrar</a></td>
+				<td class="center"><?=$arr['cod_instalacion']?></td>
+				<td class="center"><?=$arr['fecha']?></td>
+				<td class="center"><?=$arr['cod_mat_gen']?></td>
+				<td class="center"><?=$arr['estado']?></td>
+				<td class="numero_tabla"><?=number_format($arr['nipla'])?></td>
+				<td class="center"><?=$arr['temporada']?></td>
+				<td class="center"><?=$arr['especie']?></td>
+				<td class="center"><?=$arr['tipo_propagacion']?></td>
+				<td class="center"><?=$arr['sector']?></td>
+				<td class="center"><?=$arr['nave']?></td>
+				<td class="numero_tabla"><?=$arr['anio']?></td>
+				<td class="numero_tabla"><?=$arr['meson']?></td>
+				<td class="center"><a href="editar.php?id=<?=$arr['id']?>">Editar</a></td>
+				<td class="center"><a href="borrar.php?id=<?=$arr['id']?>">Borrar</a></td>
 			</tr>
 		<?php
 	}

@@ -33,13 +33,15 @@ madre.id,
 app_campo_origen.nombre as campo_origen,  
 madre.fecha_plantacion,
 app_origen_genetico.nombre as origen_genetico,
-app_propagacion.nombre as tipo_propagacion 
+app_propagacion.nombre as tipo_propagacion,
+app_especie.nombre as especie
 
 from madre 
-inner join cod_mat_gen on cod_mat_gen.id = madre.id_cod_mat_gen
-inner join app_campo_origen on app_campo_origen.id = madre.campo_origen
-inner join app_origen_genetico on app_origen_genetico.id = madre.origen_genetico
-inner join app_propagacion on app_propagacion.id = madre.tipo_propagacion
+left join cod_mat_gen on cod_mat_gen.id = madre.id_cod_mat_gen
+left join app_campo_origen on app_campo_origen.id = madre.campo_origen
+left join app_origen_genetico on app_origen_genetico.id = madre.origen_genetico
+left join app_propagacion on app_propagacion.id = madre.tipo_propagacion
+left join app_especie on app_especie.id = cod_mat_gen.especie
 
 order by cod_desc asc";
 
@@ -56,6 +58,7 @@ $result = $mysqli->query($query);
 			<th>Fecha Plantacion</th>
 			<th>Cod. Mat. Gen</th>
 			<th>Origen Genetico</th>
+			<th>Especie</th>
 			<th>Tipo Propagacion</th>
 			
 			<th>Editar</th>
@@ -72,6 +75,7 @@ $result = $mysqli->query($query);
 				<td><?=$arr['fecha_plantacion']?></td>
 				<td><?=$arr['cod_mat_gen']?></td>
 				<td><?=$arr['origen_genetico']?></td>
+				<td><?=$arr['especie']?></td>
 				<td><?=$arr['tipo_propagacion']?></td>
 				<td><a href="editar.php?id=<?=$arr['id']?>">Editar</a></td>
 				<td><a href="borrar.php?id=<?=$arr['id']?>">Borrar</a></td>

@@ -1,0 +1,54 @@
+<?php
+if(is_dir("/home4/alvarube/public_html/telios/quivolgo")){
+	$baseDir = "/home4/alvarube/public_html/telios/quivolgo/includes/";
+}
+else{
+	$baseDir = "c:/wamp/www/quivolgo/includes/";
+}
+include($baseDir."conexion.php");
+
+if(isset($_SESSION['id'])){
+	$objeto = getObjetoByNombre('APLICACIONES', $mysqli);
+	$pUser = getPermisosObjeto($_SESSION['id'], $objeto['id'], $mysqli);
+	/* 1:CREATE, 2:READ, 3:UPDATE,  4:DELETE, 5:DETAIL */
+}
+else{
+	header("Location: /quivolgo/index.php");
+}
+
+if(!in_array("2", $pUser)){
+	$_SESSION['error']['mensaje'] = "No estás autorizado a acceder a esta pagina";
+	$_SESSION['error']['location'] = "/quivolgo/index.php";
+	header("location: /quivolgo/error/index.php");
+}
+
+
+
+print_head();
+print_menu();
+
+
+
+?>
+<div class="container">
+	<h3 class="center">Aplicaciones</h3>
+	<a href="nuevo.php" class="btn btn_sys right btn_nuevo">Nuevo</a>
+	<table id="listado" style="font-size: 0.82em;">
+		<thead>
+			<th>Nombre</th>
+			<th>Categoría</th>
+			<th>Estado</th>
+			<th>Detalle</th>
+			<th>Editar</th>
+			<th>Borrar</th>
+		</thead>
+		<tbody>
+	
+		</tbody>
+	</table>
+	
+</div>
+
+<?php
+print_footer();
+?>

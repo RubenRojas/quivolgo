@@ -34,6 +34,7 @@ table thead th{
 label {
     color: #151515 !important;
     font-size: 1em !important;
+    font-weight: bold;
 }
 .btn_nuevo{
 	margin-bottom: 20px;
@@ -68,7 +69,30 @@ span.info{
     padding-bottom: 6px;
     margin-top: 9px;
 }
+.numero_tabla{
+	text-align: right !important;
+}
+.dato_corto{
+	text-align: center !important;
+}
 
 
-
-
+.lista_componente input{
+	    color: #333;
+    background: aliceblue;
+    padding-left: 6px;
+    height: 23px;
+    margin-top: 4px;
+}
+.lista_componente .col{
+	margin-bottom: -15px;
+}
+.lista_componente input[type=text]:disabled{
+	color: #272727;
+}
+#agregados input[type=text]:disabled{
+	width: 70px;
+    margin-right: 20px;
+    height: 22px;
+    text-align: center;
+}

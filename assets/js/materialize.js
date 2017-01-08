@@ -611,7 +611,7 @@ if (jQuery) {
         // Constrain width
         if (curr_options.constrain_width === true) {
           activates.css('width', origin.outerWidth()+60);
-          activates.css('overflow-y', "hidden");
+          //activates.css('overflow-y', "hidden");
 
         } else {
           activates.css('white-space', 'nowrap');

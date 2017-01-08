@@ -48,7 +48,7 @@ $titulo = "Nueva Madre";
 			<h3 class="center"><?=$titulo?></h3>
 			<div class="col s3">
 				<label for="">Cod. Material Gen.</label>
-				<select name="id_cod_mat_gen" id="id_cod_mat_gen" onchange="setCodigo(this)">
+				<select name="id_cod_mat_gen" id="id_cod_mat_gen" onchange="setCodigo()">
 					<?=show_option("cod_mat_gen", "", $mysqli)?>
 				</select>
 			</div>
@@ -58,13 +58,13 @@ $titulo = "Nueva Madre";
 			</div>
 			<div class="col s3">
 				<label for="">Campo Origen</label>
-				<select name="campo_origen" id="">
+				<select name="campo_origen" id="campo_origen" onchange="setCodigo()">
 					<?=show_option("app_campo_origen", "", $mysqli)?>
 				</select>
 			</div>
 			<div class="col s3">
-				<label for="">Fecha Plantacion</label>
-				<input type="date" name="fecha_plantacion">
+				<label for="">Año plantacion</label>
+				<input type="number" name="fecha_plantacion" id="anio" onchange="setCodigo()">
 			</div>
 			<div class="col s3">
 				<label for="">Origen Genetico</label>
@@ -91,11 +91,21 @@ $titulo = "Nueva Madre";
 </div>
 
 <script>
-	function setCodigo(select){
-		var $sel = $(select);
+	function setCodigo(){
+		var $sel = $("#id_cod_mat_gen");
 		var value = $sel.val();
-		var text = $("option:selected",$sel).text(); 
-		$("#cod_desc").val("M"+nId+text);
+		var cod_mat_gen = $("option:selected",$sel).text(); 
+
+		var $sel = $("#campo_origen");
+		var value = $sel.val();
+		var campo_origen = $("option:selected",$sel).text(); 
+
+		var anio = $("#anio").val();
+
+
+
+
+		$("#cod_desc").val(cod_mat_gen + "-"+campo_origen+"-"+anio);
 	}
 </script>
 

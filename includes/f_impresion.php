@@ -36,6 +36,7 @@ function print_head(){
 }
 
 function print_footer(){
+	include($baseDir."notificacion.php");
 ?>
 <div class="container">
 	<div class="row">
@@ -62,12 +63,15 @@ function print_menu(){
 	<ul id="dropdown1" class="dropdown-content">
 		<li><a href="/quivolgo/usuarios/index.php">Usuarios</a></li>		
 		<li><a href="/quivolgo/app_campo_origen/index.php">Campo Origen</a></li>	
+		<li><a href="/quivolgo/app_categoria_aplicacion/index.php">Categoría Aplicacion</a></li>	
+		<li><a href="/quivolgo/app_componente/index.php">Componente</a></li>	
 		<li><a href="/quivolgo/cod_mat_get/index.php">Codigo Mat. Gen.</a></li>	
 		<li><a href="/quivolgo/app_contenedor/index.php">Contenedor</a></li>	
 		<li><a href="/quivolgo/app_coordinador/index.php">Coordinador</a></li>	
 		<li><a href="/quivolgo/app_especie/index.php">Especie</a></li>	
 		<li><a href="/quivolgo/app_estado_planta/index.php">Estado Planta</a></li>	
 		<li><a href="/quivolgo/app_instalador/index.php">Instalador</a></li>	
+		<li><a href="/quivolgo/app_medio_aplicacion/index.php">Medio Aplicacion</a></li>	
 		<li><a href="/quivolgo/madres/index.php">Madres</a></li>	
 		<!--<li><a href="/quivolgo/app_meson/index.php">Meson</a></li>	-->
 		<li><a href="/quivolgo/app_nave/index.php">Nave</a></li>	
@@ -101,18 +105,21 @@ function print_menu(){
 		<div class="nav-wrapper indigo">
 		<!--<a href="#" class="brand-logo right">Logo</a>-->
 		<ul id="nav-mobile" class="left hide-on-med-and-down" style="width: 100%;">
-			<li><a href="/quivolgo">Home</a></li>
+			<li><a href="/quivolgo"><i class="fa fa-home" style="margin-right: 6px; "></i>Home</a></li>
 			<!--
-			<li><a class="dropdown-button" href="#!" data-activates="dropdownInventario">Inventarios <i class="fa fa-arrow-down" aria-hidden="true"></i></a></li>
+			<li><a class="dropdown-button" href="#!" data-activates="dropdownInventario">Inventarios <i class="fa fa-arrow-down" style="margin-right: 6px; "></i></a></li>
 			-->
-			<li><a class="dropdown-button" href="#!" data-activates="dropdownInstalaciones">Instalaciones <i class="fa fa-arrow-down" aria-hidden="true"></i></a></li>
+			<li><a class="dropdown-button" href="#!" data-activates="dropdownInstalaciones"><i class="fa fa-list-alt" style="margin-right: 6px; "></i>Instalaciones <i class="fa fa-arrow-down" style="margin-right: 6px; "></i></a></li>
+			<li><a href="/quivolgo/aplicaciones"><i class="fa fa-check-square-o" style="margin-right: 6px; "></i>Aplicaciones</a></li>
+			<li><a href="/quivolgo/productos">Productos</a></li>
+
 			
 			<!--
 			<li><a href="/quivolgo/informes/index.php">Intervenciones</a></li>
 			<li><a href="/quivolgo/informes/index.php">Ensayos</a></li>
 			<li><a href="/quivolgo/informes/index.php">Despacho</a></li>			
 			-->
-			<li><a class="dropdown-button" href="#!" data-activates="dropdown1">Opciones <i class="fa fa-arrow-down" aria-hidden="true"></i></a></li>
+			<li><a class="dropdown-button" href="#!" data-activates="dropdown1"><i class="fa fa-cogs" style="margin-right: 6px; "></i>Opciones <i class="fa fa-arrow-down" style="margin-right: 6px; "></i></a></li>
 			<li style="float: right; "><a href="/quivolgo/login/logout.php">Cerrar Sesion</a></li>
 		</ul>
 		</div>

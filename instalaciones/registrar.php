@@ -58,25 +58,27 @@ $titulo = "Registrar Instalacion";
 					<input type="date" name="fecha" value="<?=$HOY?>">
 				</div>
 				<div class="col s3">
+					<label for="">Cod. Madre</label>
+					<select name="cod_madre" id="" onchange="get_data_madre(this.value); " required="required">						
+						<?=show_option_campos("madre", "", array("id", "cod_desc"), array() , array(), $mysqli)?>
+					</select>					
+				</div>
+				<div class="col s3">
 					<label for="">Cod M. Genetico</label>
-					<select name="cod_mat_gen" id="" onchange="get_data_madre(this.value)">
-						<?=show_option("cod_mat_gen", "", $mysqli)?>
-					</select>
+					<input type="text" id="cod_mat_gen" disabled="disabled">
+					<input type="hidden" name="madre" id="cod_mat_gen_2">
+					
 				</div>
 				<div class="col s3">
 					<label for="">Especie</label>
 					<input type="text" id="especie" disabled="disabled">
 				</div>
-				<div class="col s3">
-					<label for="">Cod. Madre</label>
-					<input type="text" id="cod_madre" disabled="disabled">
-					<input type="hidden" name="madre" id="cod_madre_2">
-				</div>
+				
 
 				<div class="col s3">
 					<label for="">Estado</label>
 					<select name="estado" id="">
-						<?=show_option("app_estado", "", $mysqli)?>
+						<?=show_option("app_estado", "1", $mysqli)?>
 					</select>
 				</div>
 
@@ -90,7 +92,7 @@ $titulo = "Registrar Instalacion";
 						<span class="info" id="tipo_propagacion"></span>
 					</div>
 					<div class="col s3">
-						<label for="">Campo Origen: </label>
+						<label for="">Campo de Setos: </label>
 						<span class="info" id="campo_origen"></span>
 					</div>
 					<div class="col s3">
@@ -124,7 +126,7 @@ $titulo = "Registrar Instalacion";
 				
 				</div>
 				<div class="col s3">
-					<label for="">Contendor</label>
+					<label for="">Tipo Bandeja</label>
 					<select name="tipo_contenedor" id="tipo_contenedor" onchange="set_capacidad_contendor(this.value)">
 						<?=show_option("app_contenedor", "", $mysqli)?>
 					</select>
@@ -141,6 +143,10 @@ $titulo = "Registrar Instalacion";
 				<div class="col s3">
 					<label for="">NIPLA</label>
 					<input type="text" id="NIPLA" name="nipla" >
+				</div>
+				<div class="col s3">
+					<label for="">Platabanda</label>
+					<input type="text" id="NIPLA" name="platabanda" >
 				</div>
 				<div class="col s3">
 					<label for="">Temporada</label>
@@ -195,7 +201,7 @@ $titulo = "Registrar Instalacion";
 
 <script>
 	jQuery(document).ready(function($) {
-		$("#cod_instalacion").val("IN<?=date('Y')?>"+nId);
+		
 	});
 	var parcelas_creadas = 0;
 	function setNipla(){
@@ -210,9 +216,10 @@ $titulo = "Registrar Instalacion";
 		var NIPLA = $("#cap_contenedor").val();
 		var n_parcelas = 1;
 		var p_creadas_tmp = parcelas_creadas;
+		var cod_instalacion = $("#cod_instalacion").val();
 
 		if(Contenedor == ""){
-			swal("Error", "Debe seleccionar un tipo de contenedor", "error");
+			swal("Error", "Debe seleccionar un tipo de Bandeja", "error");
 		}
 		else{
 			if(n_parcelas==""){
@@ -221,10 +228,10 @@ $titulo = "Registrar Instalacion";
 			else{
 				for(var i=(p_creadas_tmp+1); i<=(parseInt(p_creadas_tmp)+ parseInt(n_parcelas));i++){
 					if(i<10){
-						var idParcela = "PA0"+i+"IN"+nId;
+						var idParcela = "PA0"+i+"-"+cod_instalacion;
 					}
 					else{
-						var idParcela = "PA"+i+"IN"+nId;
+						var idParcela = "PA"+i+"-"+cod_instalacion;
 					}
 					parcelas_creadas++;
 					
@@ -243,12 +250,24 @@ $titulo = "Registrar Instalacion";
 		}
 		$("#parcelas_creadas").val(parcelas_creadas);
 
-
-		
 		
 	}
 	function remove_row(id){
 		$("#"+id).remove();
+	}
+
+	function set_codigo_instalacion(){
+
+		var sel = $("#cod_mat_gen").val();
+		/*var value = $sel.val();
+		var cod_mat_gen_2 = $("option:selected",$sel).text(); */
+
+
+		
+		var anio = '<?=date("Y")?>';
+
+
+		$("#cod_instalacion").val(sel+"-"+anio+"-"+nId);
 	}
 
 

@@ -1,0 +1,19 @@
+<?php
+if(is_dir("/home4/alvarube/public_html/telios/quivolgo")){
+	$baseDir = "/home4/alvarube/public_html/telios/quivolgo/includes/";
+}
+else{
+	$baseDir = "c:/wamp/www/quivolgo/includes/";
+}
+
+include($baseDir."conexion.php");
+extract($_POST);
+
+
+$campos = array("nombre"=>$nombre, "descripcion"=>$descripcion);
+$id_usuario = insert("app_componente", $campos, $mysqli);
+
+$_SESSION['mensaje']['tipo'] = "SUCCESS";
+$_SESSION['mensaje']['texto'] = "Se ingresó el registro correctamente";
+
+header("Location: ../index.php");

@@ -195,6 +195,7 @@ function show_option($tabla, $id_ant ,$mysqli){
 }
 function show_option_campos($tabla, $id_ant, $campos, $condiciones, $opciones, $mysqli){
 	$result = select($tabla, $campos, $condiciones, $opciones, $mysqli);
+	?><option value=""></option><?php
 	while ($arr = $result->fetch_array()) {
 		?>
 		<option value="<?=$arr[0]?>" <?php if($arr[0]==$id_ant){ ?>selected<?php } ?>><?=$arr[1]?></option>

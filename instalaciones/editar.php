@@ -67,20 +67,22 @@ $titulo = "Editar Instalacion";
 					<input type="date" name="fecha"  value="<?=$arr['fecha']?>">
 				</div>
 				<div class="col s3">
+					<label for="">Cod. Madre</label>
+					<select name="cod_madre" id="" onchange="get_data_madre('<?=$arr['madre']?>')">						
+						<?=show_option_campos("madre", $arr['madre'], array("id", "cod_desc"), array() , array(), $mysqli)?>
+					</select>					
+				</div>
+				<div class="col s3">
 					<label for="">Cod M. Genetico</label>
-					<select name="cod_mat_gen" id="" onchange="get_data_madre(this.value)">
-						<?=show_option("cod_mat_gen", $madre['id_cod_mat_gen'], $mysqli)?>
-					</select>
+					<input type="text" id="cod_mat_gen" disabled="disabled">
+					<input type="hidden" name="madre" id="cod_mat_gen_2" value="<?=$madre['id_cod_mat_gen']?>">
+					
 				</div>
 				<div class="col s3">
 					<label for="">Especie</label>
 					<input type="text" id="especie" disabled="disabled" value="<?=get_campo("app_especie", "nombre", $cod_mat_gen['especie'], $mysqli)?>">
 				</div>
-				<div class="col s3">
-					<label for="">Cod. Madre</label>
-					<input type="text" id="cod_madre" disabled="disabled" value="<?=$madre['cod_desc']?>">
-					<input type="hidden" name="madre" id="cod_madre_2" value="<?=$madre['cod_desc']?>">
-				</div>
+				
 
 				<div class="col s3">
 					<label for="">Estado</label>
@@ -99,7 +101,7 @@ $titulo = "Editar Instalacion";
 						<span class="info" id="tipo_propagacion"><?=get_campo("app_propagacion", "nombre", $madre['tipo_propagacion'], $mysqli)?></span>
 					</div>
 					<div class="col s3">
-						<label for="">Campo Origen: </label>
+						<label for="">Campo de Setos: </label>
 						<span class="info" id="campo_origen"><?=get_campo("app_campo_origen", "nombre", $madre['campo_origen'], $mysqli)?></span>
 					</div>
 					<div class="col s3">
@@ -132,7 +134,7 @@ $titulo = "Editar Instalacion";
 					<input type="number" name="meson" value="<?=$arr['meson']?>">
 				</div>
 				<div class="col s3">
-					<label for="">Contendor</label>
+					<label for="">Tipo Bandeja</label>
 					<select name="tipo_contenedor" id="tipo_contenedor" onchange="set_capacidad_contendor(this.value)">
 						<?=show_option("app_contenedor", $arr['tipo_contenedor'], $mysqli)?>
 					</select>
@@ -155,6 +157,10 @@ $titulo = "Editar Instalacion";
 					<select name="temporada" id="">
 						<?=show_option("app_temporada", $arr['temporada'], $mysqli)?>
 					</select>
+				</div>
+				<div class="col s3">
+					<label for="">Platabanda</label>
+					<input type="text" id="NIPLA" name="platabanda" value="<?=$arr['platabanda']?>" >
 				</div>
 				<div class="col s3">
 					<label for="">Instalador</label>
@@ -216,7 +222,7 @@ $titulo = "Editar Instalacion";
 		//$("#cod_instalacion").val("IN<?=date('Y')?>"+nId);
 		set_capacidad_contendor($("#tipo_contenedor").val());
 		
-		get_data_madre('<?=$madre['id_cod_mat_gen']?>');
+		get_data_madre('<?=$arr['madre']?>');
 		parcelasCreadas();
 		
 	});
@@ -238,10 +244,10 @@ $titulo = "Editar Instalacion";
 
 		for(var i=1; i<=(parseInt(p_creadas_tmp));i++){
 			if(i<10){
-				var idParcela = "PA0"+i+"IN"+nId;
+				var idParcela = "PA0"+i+"IN<?=date('Y')?>"+nId;
 			}
 			else{
-				var idParcela = "PA"+i+"IN"+nId;
+				var idParcela = "PA"+i+"IN<?=date('Y')?>"+nId;
 			}
 			//parcelas_creadas++;
 			

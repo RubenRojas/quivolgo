@@ -55,14 +55,16 @@ function get_data_madre(id){
 				if(datos.responseText != "null"){
 					var data = $.parseJSON(datos.responseText);
 					console.log(data);
-					$("#origen_genetico").html(data.cod_mat_gen);
+					$("#origen_genetico").html(data.origen_genetico);
 					$("#tipo_propagacion").html(data.tipo_propagacion);
 					$("#campo_origen").html(data.campo_origen);
 					$("#fecha_plantacion").html(data.fecha_plantacion);
-					$("#cod_madre").val(data.cod_desc);
-					$("#cod_madre_2").val(data.id_madre);
+					$("#cod_mat_gen").val(data.cod_mat_gen);
+					$("#cod_mat_gen_2").val(data.id_cod_mat_gen);
 					
 					$("#especie").val(data.especie);
+
+					set_codigo_instalacion();
 				}
 			}
 		}  
@@ -93,6 +95,76 @@ function set_capacidad_contendor(id){
 	datos.open("GET", url, true);
 	datos.send(null);
 
+}
+
+function setSelectProducto(value){
+	var url= baseDir+"/aplicacion/getProductosCategoria.php?categoria="+value;
+	var datos=crearXMLHttpRequest();
+	datos.onreadystatechange = function(){
+		if(datos.readyState==1){
+		}
+		else if(datos.readyState==4){
+			if(datos.status==200){
+				if(datos.responseText != "null"){
+					
+					$("#producto").html(datos.responseText);
+					$("#componentes").html("");
+					
+				}
+			}
+			$('select').material_select();
+		}  
+	};
+	datos.open("GET", url, true);
+	datos.send(null);
+}
+
+function setComponentes(value){
+	var url= baseDir+"/aplicacion/getComponentes.php?producto="+value;
+	var datos=crearXMLHttpRequest();
+	datos.onreadystatechange = function(){
+		if(datos.readyState==1){
+		}
+		else if(datos.readyState==4){
+			if(datos.status==200){
+				if(datos.responseText != "null"){
+					
+					$("#componentes").html(datos.responseText);
+					
+				}
+			}
+			
+		}  
+	};
+	datos.open("GET", url, true);
+	datos.send(null);
+}
+
+function showMesones(){
+	var sector 	= $("#sector").val();
+
+	var nave	= $("#nave").val();
+	var sel = $("#nave");
+	
+	var data_nave = $("option:selected",sel).text(); 
+	var url= baseDir+"/aplicacion/getMesones.php?sector="+sector+"&nave="+nave+"&data_nave="+data_nave;
+	var datos=crearXMLHttpRequest();
+	datos.onreadystatechange = function(){
+		if(datos.readyState==1){
+		}
+		else if(datos.readyState==4){
+			if(datos.status==200){
+				if(datos.responseText != "null"){
+					
+					$("#mesones").html(datos.responseText);
+					
+				}
+			}
+			
+		}  
+	};
+	datos.open("GET", url, true);
+	datos.send(null);
 }
 
 
