@@ -1,0 +1,73 @@
+<?php
+if(is_dir("/home4/alvarube/public_html/telios/quivolgo")){
+	$baseDir = "/home4/alvarube/public_html/telios/quivolgo/includes/";
+}
+else{
+	$baseDir = "c:/wamp/www/quivolgo/includes/";
+}
+include($baseDir."conexion.php");
+
+if(isset($_SESSION['id'])){
+	$objeto = getObjetoByNombre('INVENTARIO', $mysqli);
+	$pUser = getPermisosObjeto($_SESSION['id'], $objeto['id'], $mysqli);
+	/* 1:CREATE, 2:READ, 3:UPDATE,  4:DELETE, 5:DETAIL */
+}
+else{
+	header("Location: /quivolgo/index.php");
+}
+
+if(!in_array("1", $pUser)){
+	$_SESSION['error']['mensaje'] = "No estás autorizado a acceder a esta pagina";
+	$_SESSION['error']['location'] = "/quivolgo/inventario/index.php";
+	header("location: /quivolgo/error/index.php");
+}
+
+
+
+print_head();
+print_menu();
+
+
+
+$titulo = "Nuevo Inventario";
+
+?>
+<script>
+	var nId = "<?=$nId?>";
+</script>
+<div class="container_form">
+	<form action="forms/insert.php" method="post">
+		<div class="row">
+			<h3 class="center"><?=$titulo?></h3>
+			<div class="col s3">
+				<label for="">Fecha Apertura</label>
+				<input type="date" name="fecha_apertura" value="<?=$HOY?>">
+			</div>
+			<div class="col s3">
+				<label for="">Coordinador</label>
+				<select name="coordinador" id="enargado" >
+					<?=show_option("app_coordinador", "", $mysqli)?>
+				</select>
+			</div>
+			
+			<div class="col s12">
+				<label for="">Observacion</label>
+				<input type="text" name="observacion">
+			</div>
+
+			
+		
+			<div class="col s12" style="margin-top: 50px;">
+				<input type="hidden" name="estado" value="1">
+				<a href="Javascript:window.history.back();" class="btn red left">Cancelar</a>
+				<input type="submit" value="Guardar" class="btn btn_sys right">
+			</div>
+		</div>
+	</form>
+	
+</div>
+
+
+<?php
+print_footer();
+?>

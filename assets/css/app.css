@@ -96,3 +96,57 @@ span.info{
     height: 22px;
     text-align: center;
 }
+
+td.numero{
+	text-align: right;
+}
+
+.componente td, #listado_alturas td{
+	padding: 0;
+	text-align: center;
+}
+
+
+.aplicacion_historial{
+	    display: flex;
+    border: 1px solid #797979;
+    margin-bottom: 11px;
+    padding: 7px;
+
+}
+.aplicacion_historial label{
+	    font-size: .85em !important;
+}
+
+.aplicacion_historial .dato{
+    padding: 2px;
+    height: 20px !important;
+    min-height: 17px;
+    padding-left: 6px;
+    margin-top: -1px;
+    margin-bottom: 1px;
+    font-size: .85em;
+}
+
+.filtros{
+	    border: 1px solid #a5a5a5;
+    padding: 24px !important;
+}
+
+.datos_medicion{
+margin-top: 20px;
+margin-bottom: 20px;
+}
+.datos_medicion label{
+	    font-size: .85em !important;
+}
+
+.datos_medicion .dato{
+    padding: 2px;
+    height: 20px !important;
+    min-height: 17px;
+    padding-left: 6px;
+    margin-top: -1px;
+    margin-bottom: 1px;
+    font-size: .85em;
+}

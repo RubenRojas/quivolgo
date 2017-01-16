@@ -46,7 +46,7 @@ foreach ($lista_naves as $key => $value) {
 		$lista_mesones.="'".$val."', ";
 	}
 	$lista_mesones = substr($lista_mesones, 0, -2);
-	$query = "select id from instalacion where sector='$sector' and nave = '$key' and meson in ($lista_mesones) order by id";
+	$query = "select id from instalacion where sector='$sector' and nave = '$key' and meson in ($lista_mesones) and estado='1' order by id";
 	$result = $mysqli->query($query);
 	while ($arr = $result->fetch_assoc()) {
 		if(!in_array($arr['id'], $lista_instalaciones)){

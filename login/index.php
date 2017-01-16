@@ -13,7 +13,7 @@ print_head();
 	<div class="container">
 		<div class="row">
 			<div class="col s12 m6 offset-m3" style="margin-top: 63px; background: rgba(255, 255, 255, 0.81); padding: 15px 15px 39px 15px; border-radius: 4px; ">	
-				<h2 class="center">SISTEMA DE CONTROL Y ADMINISTRACION DE VIVERO</h2>
+				<h2 class="center">SISTEMA DE INFORMACION DE VIVERO S.I.V.</h2>
 				<div id="login">
 					<h5 class="center">Iniciar Sesión</h5>
 					<form action="valida.php" method="post">

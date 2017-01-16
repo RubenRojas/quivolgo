@@ -27,7 +27,21 @@ if(!in_array("2", $pUser)){
 print_head();
 print_menu();
 
+$query = "select
+aplicacion.id,
+aplicacion.fecha,
+app_instalador.nombre as instalador,
+app_medio_aplicacion.nombre as medio,
+app_categoria_aplicacion.nombre as categoria,
+producto.nombre as producto
+from aplicacion 
+inner join app_instalador on app_instalador.id = aplicacion.encargado
+inner join app_medio_aplicacion on app_medio_aplicacion.id = aplicacion.medio
+inner join app_categoria_aplicacion on app_categoria_aplicacion.id = aplicacion.categoria 
+inner join producto on producto.id = aplicacion.producto
 
+order by fecha desc";
+$result = $mysqli->query($query);
 
 ?>
 <div class="container">
@@ -35,14 +49,32 @@ print_menu();
 	<a href="nuevo.php" class="btn btn_sys right btn_nuevo">Nuevo</a>
 	<table id="listado" style="font-size: 0.82em;">
 		<thead>
-			<th>Nombre</th>
-			<th>Categoría</th>
-			<th>Estado</th>
+			<th>Fecha</th>
+			<th>Instalador</th>
+			<th>Medio</th>
+			<th>Categoria</th>
+			<th>Producto</th>
 			<th>Detalle</th>
 			<th>Editar</th>
 			<th>Borrar</th>
 		</thead>
 		<tbody>
+		<?php
+		while ($arr = $result->fetch_assoc()) {
+			?>
+			<tr>
+				<td><?=cambiarFormatoFecha($arr['fecha'])?></td>
+				<td><?=$arr['instalador']?></td>
+				<td><?=$arr['medio']?></td>
+				<td><?=$arr['categoria']?></td>
+				<td><?=$arr['producto']?></td>
+				<td><a href="detalle.php?id=<?=$arr['id']?>">Detalle</a></td>
+				<td><a href="editar.php?id=<?=$arr['id']?>">Editar</a></td>
+				<td><a href="borrar.php?id=<?=$arr['id']?>">Borrar</a></td>
+			</tr>
+			<?php
+		}
+		?>
 	
 		</tbody>
 	</table>

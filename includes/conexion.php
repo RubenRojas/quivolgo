@@ -37,8 +37,8 @@ include($baseDir."data/objeto.php");
 //	CONEXION BASE DE DATOS
 /*************************************************/
 $host="localhost";
-$user= "alvarube";
-$pass="capuccino650A";
+$user= "alvarube_quivolg";
+$pass="ne4azU-tefu!";
 $database="alvarube_quivolgo";
 $mysqli = @new mysqli($host, $user, $pass, $database);
 if ($mysqli->connect_errno) {

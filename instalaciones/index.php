@@ -76,7 +76,8 @@ $result = $mysqli->query($query);
 			<th>Sector</th>
 			<th>Nave</th>
 			<th>Año Madre</th>
-			<th>Meson</th>			
+			<th>Meson</th>
+			<th>Detalle</th>			
 			<th>Editar</th>
 			<th>Borrar</th>
 		</thead>
@@ -98,6 +99,7 @@ $result = $mysqli->query($query);
 				<td class="center"><?=$arr['nave']?></td>
 				<td class="numero_tabla"><?=$arr['anio']?></td>
 				<td class="numero_tabla"><?=$arr['meson']?></td>
+				<td class="center"><a href="detalle.php?id=<?=$arr['id']?>">Detalle</a></td>
 				<td class="center"><a href="editar.php?id=<?=$arr['id']?>">Editar</a></td>
 				<td class="center"><a href="borrar.php?id=<?=$arr['id']?>">Borrar</a></td>
 			</tr>

@@ -98,6 +98,7 @@ function print_menu(){
 
 	<ul id="dropdownInstalaciones" class="dropdown-content">
 		<li><a href="/quivolgo/instalaciones/registrar.php">Registrar</a></li>		
+		<li><a href="/quivolgo/instalaciones/resumen_componentes.php">Resumen Componentes Aplicados</a></li>		
 		<li><a href="/quivolgo/instalaciones/index.php">Vista General</a></li>		
 	</ul>
 
@@ -119,6 +120,7 @@ function print_menu(){
 			<li><a href="/quivolgo/informes/index.php">Ensayos</a></li>
 			<li><a href="/quivolgo/informes/index.php">Despacho</a></li>			
 			-->
+			<li><a href="/quivolgo/inventario/index.php">Inventario</a></li>
 			<li><a class="dropdown-button" href="#!" data-activates="dropdown1"><i class="fa fa-cogs" style="margin-right: 6px; "></i>Opciones <i class="fa fa-arrow-down" style="margin-right: 6px; "></i></a></li>
 			<li style="float: right; "><a href="/quivolgo/login/logout.php">Cerrar Sesion</a></li>
 		</ul>
