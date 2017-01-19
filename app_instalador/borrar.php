@@ -25,7 +25,7 @@ print_head();
 print_menu();
 extract($_GET);
 
-$titulo ="Borrar Instalador";
+$titulo ="Borrar Operador";
 
 $query = "select * from app_instalador where id='$id' limit 1";
 $result = $mysqli->query($query);

@@ -1,0 +1,94 @@
+/**********************************/
+/*** MENU
+/**********************************/
+nav ul a{
+      height: 64px;
+}
+nav ul a i{
+      margin-right: 6px;
+}
+li.has-drop > a > i{
+  margin-left: 7px;
+
+}
+ul.drop li{
+    float: none;
+    position: relative;
+    min-width: 180px;
+    line-height: 1.4;
+    border-radius: 3px;
+    padding: 9px 0px;
+    border-top: 1px solid rgb(238, 238, 238);
+    background-color: #00796b;
+    text-align: left;
+    height: 42px;
+    -webkit-transition: all .3s;
+    -o-transition: all .3s;
+    transition: all .3s;
+    color: #fff;
+}
+ul.drop li a{
+    font-size: .9em;
+    color: #FFF;
+    width: 100%;
+    height: 100%;
+}
+ul.drop li a > i{
+  line-height: 1;
+}
+ul.drop > li.has-drop i{
+    line-height: 1.2;
+    height: 100%;
+    font-size: 1em;
+    text-align: right;
+    float: right;
+}
+ul.drop > li.has-drop{
+
+}
+ul.drop li:hover{
+  background-color: #004d40;
+} 
+
+li.has-drop ul{
+  display: none;
+}
+li.has-drop:hover > .drop{ /*Primer Nivel*/
+  position: absolute;
+  display: inherit;
+  z-index: 1000;
+  -webkit-transition: .2s all;
+  -o-transition: .2s all;
+  transition: .2s all;
+}
+ul.drop > li.has-drop:hover > .drop{ /*Segundo Nivel*/
+     margin-left: 181px;
+    margin-top: -33px;
+}
+
+@media all and (max-width:400px){
+  li.has-drop:hover > .drop{ /*Primer Nivel*/
+    display: none;
+    position: inherit;
+  }
+  ul.drop li{
+    width: 100%;
+    display: inline-table;
+  }  
+  li.has-drop:hover > .drop {
+    /*position: absolute;*/
+    position: inherit !important;
+    display: inherit;
+    z-index: 1000;
+    -webkit-transition: .2s all;
+    -o-transition: .2s all;
+    transition: .2s all;
+  }
+  .side-nav li:hover, .side-nav li.active{
+    background-color: #F2F2F2;
+  }
+}
+
+ul.drop > li.has-drop:hover > .drop:hover{
+  width: 100%;
+}

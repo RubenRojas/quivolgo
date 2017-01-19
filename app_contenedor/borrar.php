@@ -25,7 +25,7 @@ print_head();
 print_menu();
 extract($_GET);
 
-$titulo ="Borrar Contenedor";
+$titulo ="Borrar Bandeja";
 
 $query = "select * from app_contenedor where id='$id' limit 1";
 $result = $mysqli->query($query);

@@ -166,6 +166,36 @@ function showMesones(){
 	datos.open("GET", url, true);
 	datos.send(null);
 }
+function show_datos_instalacion(id_parcela){
+	
+	var url= baseDir+"/inventario/get_data_instalacion.php?id_parcela="+id_parcela;
+	var datos=crearXMLHttpRequest();
+	datos.onreadystatechange = function(){
+		if(datos.readyState==1){
+		}
+		else if(datos.readyState==4){
+			if(datos.status==200){
+				if(datos.responseText != "null"){					
+					var data = $.parseJSON(datos.responseText);
+					console.log(data);
+					$("#cod_instalacion").html(data.cod_instalacion);
+					$("#cod_mat_gen").html("<b>"+data.cod_mat_gen+"</b>");
+					$("#contenedor").html(data.contenedor);
+					$("#tipo_propagacion").html(data.tipo_propagacion);
+					$("#especie").html(data.especie);
+					$("#sector").html(data.sector);
+					$("#nave").html(data.nave);
+					$("#meson").html(data.meson);
+					$("#nipla").val(data.nipla);
+					$("#temporada").html(data.temporada);
+				}
+			}
+			
+		}  
+	};
+	datos.open("GET", url, true);
+	datos.send(null);
+}
 
 
 

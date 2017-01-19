@@ -98,12 +98,17 @@ span.info{
 }
 
 td.numero{
-	text-align: right;
+	text-align: right !important;
 }
-
-.componente td, #listado_alturas td{
-	padding: 0;
-	text-align: center;
+.bloque{
+    background: aliceblue;
+    padding: 13px !important;
+    margin: 9px;
+}
+.componente td, #listado_alturas td, .tabla_chica td{
+	    padding: 0px 8px;
+    text-align: center;
+    border: 1px solid #dcdcdc;
 }
 
 
@@ -149,4 +154,8 @@ margin-bottom: 20px;
     margin-top: -1px;
     margin-bottom: 1px;
     font-size: .85em;
+}
+
+.submenu{
+	
 }

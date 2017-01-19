@@ -140,12 +140,12 @@ $titulo = "Editar Instalacion";
 					</select>
 				</div>
 				<div class="col s3">
-					<label for="">Cap. Contenedor</label>
+					<label for="">Cap. Bandeja</label>
 					<input type="text" id="cap_contenedor" disabled="disabled">
 					<input type="hidden" name="cap_contenedor" id="cap_contenedor_2">
 				</div>
 				<div class="col s3">
-					<label for="">N° Contenedores</label>
+					<label for="">N° Bandejas</label>
 					<input type="text" id="n_contenedores" name="n_contenedores" onchange="setNipla();" value="<?=$arr['n_contenedores']?>">
 				</div>
 				<div class="col s3">

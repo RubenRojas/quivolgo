@@ -140,12 +140,12 @@ $titulo = "Detalle Instalacion";
 					
 				</div>
 				<div class="col s3">
-					<label for="">Cap. Contenedor</label>
+					<label for="">Cap. Bandeja</label>
 					<span class="dato"><?=get_campo("app_contenedor", "capacidad", $arr['tipo_contenedor'], $mysqli)?></span>
 					
 				</div>
 				<div class="col s3">
-					<label for="">N° Contenedores</label>
+					<label for="">N° Bandejas</label>
 					<span class="dato"><?=$arr['n_contenedores']?></span>
 					
 				</div>

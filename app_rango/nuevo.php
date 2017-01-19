@@ -18,7 +18,7 @@ else{
 
 if(!in_array("1", $pUser)){
 	$_SESSION['error']['mensaje'] = "No estás autorizado a acceder a esta pagina";
-	$_SESSION['error']['location'] = "/quivolgo/app_contendor/index.php";
+	$_SESSION['error']['location'] = "/quivolgo/app_rango/index.php";
 	header("location: /quivolgo/error/index.php");
 }
 
@@ -27,21 +27,26 @@ print_menu();
 
 
 
-$titulo = "Nueva Bandeja";
+$titulo = "Nuevo Rango de Medida";
 
 ?>
 <div class="container_form">
 	<form action="forms/insert.php" method="post">
 		<div class="row">
 			<h3 class="center"><?=$titulo?></h3>
-			<div class="col s8">
+			<div class="col s4">
 				<label for="">Nombre</label>
 				<input type="text" name="nombre" value="">
 			</div>
 			<div class="col s4">
-				<label for="">Capacidad</label>
-				<input type="text" name="capacidad" value="">
+				<label for="">Valor Inicial</label>
+				<input type="number" name="valor_inicial">
 			</div>
+			<div class="col s4">
+				<label for="">Valor Final</label>
+				<input type="number" name="valor_final">
+			</div>
+			
 			
 		
 			<div class="col s12" style="margin-top: 50px;">

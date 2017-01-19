@@ -25,7 +25,7 @@ print_head();
 print_menu();
 extract($_GET);
 
-$titulo ="Editar Instalador";
+$titulo ="Editar Operador";
 
 $query = "select * from app_instalador where id='$id' limit 1";
 $result = $mysqli->query($query);
@@ -36,9 +36,17 @@ $user = $result->fetch_assoc();
 	<form action="forms/edit.php" method="post">
 		<div class="row">
 			<h3 class="center"><?=$titulo?></h3>
-			<div class="col s12">
+			<div class="col s4">
 				<label for="">Nombre</label>
 				<input type="text" name="nombre" value="<?=$user['nombre']?>">
+			</div>
+			<div class="col s4">
+				<label for="">Rut</label>
+				<input type="text" name="rut" value="<?=$user['rut']?>">
+			</div>
+			<div class="col s4">
+				<label for="">Password</label>
+				<input type="text" name="pass" value="<?=$user['pass']?>">
 			</div>
 			
 		

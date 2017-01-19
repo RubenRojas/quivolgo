@@ -32,7 +32,7 @@ $result = $mysqli->query($query);
 
 ?>
 <div class="container">
-	<h3 class="center">Contenedor</h3>
+	<h3 class="center">Bandejas</h3>
 	<a href="nuevo.php" class="btn btn_sys right btn_nuevo">Nuevo</a>
 	<table id="listado" style="font-size: 0.82em;">
 		<thead>

@@ -49,21 +49,116 @@ if($result->num_rows > 0){
 	inner join app_coordinador on app_coordinador.id = inventario.coordinador 
 	where inventario.id = '$id_inventario' limit 1";
 	$result = $mysqli->query($query);
-	$arr = $result->fetch_assoc();
+	$inventario = $result->fetch_assoc();
+
+
+
+	/*********************
+	PROGRESO MEDICIONES
+	*********************/
+	$query = "select 
+	count(inventario_medicion.id) as realizadas
+	from inventario_medicion where inventario_medicion.id_inventario='$id_inventario'";
+	$result = $mysqli->query($query);
+	$realizadas = $result->fetch_assoc();
+
+	$query = "select 
+	count(instalacion_parcela.id) as totales
+	from instalacion_parcela 
+	inner join instalacion on instalacion.id = instalacion_parcela.id_instalacion where instalacion.estado='1'";
+	$result = $mysqli->query($query);
+	$totales = $result->fetch_assoc();
+
+	$realizadas = $realizadas['realizadas'];
+	$totales  =$totales['totales'];
+
+	$porc_completado = ($realizadas * 100) / $totales;
+	$porc_restante = 100 - $porc_completado;
+	$porc_total = $porc_completado + $porc_restante;
+
+
+	/*********************
+	AGRUPACION POR RANGO
+	*********************/
+
+	$query = "select 
+	count(inventario_medicion_detalle.altura) as cantidad,
+	inventario_rango.nombre 
+	from 
+	inventario_medicion_detalle
+	inner join inventario_rango on inventario_medicion_detalle.altura between inventario_rango.valor_inicial and inventario_rango.valor_final
+	inner join inventario_medicion on inventario_medicion.id = inventario_medicion_detalle.id_medicion
+	where inventario_medicion.id_inventario='$id_inventario' 
+	group by inventario_rango.nombre
+	order by inventario_rango.id asc";
+	$result = $mysqli->query($query);
+
 	//hay un inventario activo
 	?>
 	<div class="row">
 		<div class="col s3">
 			<label for="">Fecha Apertura</label>
-			<span class="dato"><?=cambiarFormatoFecha($arr['fecha_apertura'])?></span>
+			<span class="dato"><?=cambiarFormatoFecha($inventario['fecha_apertura'])?></span>
 		</div>
 		<div class="col s4">
 			<label for="">Coordinador</label>
-			<span class="dato"><?=$arr['coordinador']?></span>
+			<span class="dato"><?=$inventario['coordinador']?></span>
 		</div>
 		<div class="col s12">
 			<label for="">Comentario / Observacion</label>
-			<span class="dato"><?=$arr['observacion']?></span>
+			<span class="dato"><?=$inventario['observacion']?></span>
+		</div>
+		<div class="col s6">
+			<div class="bloque">
+				<h5 class="center">Progreso Medicion</h5>
+				<table class="tabla_chica">
+					<thead>
+						<th>Item</th>
+						<th>Porc.</th>
+						<th>Num.</th>
+					</thead>
+					<tbody>
+						<tr>
+							<td>Completado</td>
+							<td class="numero"><?=number_format($porc_completado,1)?>%</td>
+							<td class="numero"><?=$realizadas?></td>
+						</tr>
+						<tr>
+							<td>Restante</td>
+							<td class="numero" class="numero"><?=number_format($porc_restante,1)?>%</td>
+							<td class="numero"><?=$totales - $realizadas?></td>
+						</tr>
+						<tr>
+							<td>Total</td>
+							<td class="numero"><?=$porc_total?>%</td>
+							<td class="numero"><?=$totales?></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<div class="col s6 ">
+			<div class="bloque">
+				<h5 class="center">Distribucion según alturas</h5>
+				<table class="tabla_chica">
+					<thead>
+						<th>Rango</th>
+						<th>Cantidad</th>
+					</thead>
+					<tbody>
+						<?php
+						while ($arr = $result->fetch_assoc()) {
+							?>
+							<tr>
+								<td><?=$arr['nombre']?></td>
+								<td class="numero"><?=$arr['cantidad']?></td>
+							</tr>
+							<?php
+						}
+						?>
+					</tbody>
+				</table>
+			</div>
 		</div>
 		
 		<div class="col s12"><hr></div>

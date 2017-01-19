@@ -10,8 +10,8 @@ include($baseDir."conexion.php");
 extract($_POST);
 
 
-$campos = array("nombre"=>$nombre);
-$id_usuario = insert("app_instalador", $campos, $mysqli);
+
+$id_usuario = insert("app_instalador", $_POST, $mysqli);
 
 $_SESSION['mensaje']['tipo'] = "SUCCESS";
 $_SESSION['mensaje']['texto'] = "Se ingresó el registro correctamente";

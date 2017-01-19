@@ -27,16 +27,24 @@ print_menu();
 
 
 
-$titulo = "Nuevo Instalador";
+$titulo = "Nuevo Operador";
 
 ?>
 <div class="container_form">
 	<form action="forms/insert.php" method="post">
 		<div class="row">
 			<h3 class="center"><?=$titulo?></h3>
-			<div class="col s12">
+			<div class="col s4">
 				<label for="">Nombre</label>
 				<input type="text" name="nombre" value="">
+			</div>
+			<div class="col s4">
+				<label for="">Rut</label>
+				<input type="text" name="rut" value="">
+			</div>
+			<div class="col s4">
+				<label for="">Password</label>
+				<input type="text" name="pass" value="">
 			</div>
 			
 			

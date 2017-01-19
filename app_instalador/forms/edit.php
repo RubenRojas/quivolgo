@@ -11,7 +11,7 @@ extract($_POST);
 
 $campos = array("nombre"=>$nombre);
 
-update("app_instalador", $campos, array("id"=>$id), array("limit"=>"1"), $mysqli);
+update("app_instalador", $_POST, array("id"=>$id), array("limit"=>"1"), $mysqli);
 
 $_SESSION['mensaje']['tipo'] = "SUCCESS";
 $_SESSION['mensaje']['texto'] = "El registro se ha sido actualizado correctamente";
