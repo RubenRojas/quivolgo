@@ -94,7 +94,6 @@ function set_capacidad_contendor(id){
 	};
 	datos.open("GET", url, true);
 	datos.send(null);
-
 }
 
 function setSelectProducto(value){
@@ -166,6 +165,7 @@ function showMesones(){
 	datos.open("GET", url, true);
 	datos.send(null);
 }
+
 function show_datos_instalacion(id_parcela){
 	
 	var url= baseDir+"/inventario/get_data_instalacion.php?id_parcela="+id_parcela;
@@ -188,6 +188,7 @@ function show_datos_instalacion(id_parcela){
 					$("#meson").html(data.meson);
 					$("#nipla").val(data.nipla);
 					$("#temporada").html(data.temporada);
+					$("#tipo_bandeja").html(data.tipo_bandeja);
 				}
 			}
 			
@@ -198,11 +199,143 @@ function show_datos_instalacion(id_parcela){
 }
 
 
+function setDatosInstalacion(id_instalacion){
+	var url= baseDir+"/instalacion/get_data_instalacion.php?id_parcela="+id_instalacion;
+	var datos=crearXMLHttpRequest();
+	datos.onreadystatechange = function(){
+		if(datos.readyState==1){
+		}
+		else if(datos.readyState==4){
+			if(datos.status==200){
+				if(datos.responseText != "null"){					
+					var data = $.parseJSON(datos.responseText);
+					console.log(data);
+					$("#cod_madre").html(data.cod_madre);
+					$("#cod_mat_gen").html("<b>"+data.cod_mat_gen+"</b>");
+					$("#contenedor").html(data.contenedor);
+					$("#tipo_propagacion").html(data.tipo_propagacion);
+					$("#especie").html(data.especie);
+					$("#sector").html(data.sector);
+					$("#nave").html(data.nave);
+					$("#meson").html(data.meson);
+					$("#nipla").val(data.nipla);
+					$("#origen_genetico").html(data.origen_genetico);
+					$("#temporada").html(data.temporada);
+					$("#tipo_bandeja").html(data.tipo_bandeja);
+					cap_contenedor = parseInt(data.capacidad);
+					$("#cant_contenedores").attr({
+						min: '1',
+						max: parseInt(data.n_contenedores - 1)
+					});
+				}
+			}
+			
+		}  
+	};
+	datos.open("GET", url, true);
+	datos.send(null);
+}
 
 
+function setCodMatGenFiltro(){
+	var params = {};
+	var i = 1;
+	$('#especie :selected').each(function(i, selected){ 
+	  params["p"+i] = $(selected).val();
+	  i++;
+	});
+	var parametros = jQuery.param( params )
+	var url= baseDir+"/inventario/get_cod_mat_gen_filtro.php?"+parametros;
+	var datos=crearXMLHttpRequest();
+	datos.onreadystatechange = function(){
+		if(datos.readyState==1){
+		}
+		else if(datos.readyState==4){
+			if(datos.status==200){
+				if(datos.responseText != "null"){					
+					/*var data = $.parseJSON(datos.responseText);
+					console.log(data);*/
+					console.log(datos.responseText);
+					$("#cod_mat_gen").html(datos.responseText);
+					$('select').material_select();
+					
+				}
+			}
+			
+		}  
+	};
+	datos.open("GET", url, true);
+	datos.send(null);
+}
 
 
+function setNavesFiltro(){
+	var params = {};
+	var i = 1;
+	$('#app_sector :selected').each(function(i, selected){ 
+	  params["p"+i] = $(selected).val();
+	  i++;
+	});
+	var parametros = jQuery.param( params )
+	var url= baseDir+"/inventario/get_naves_filtro.php?"+parametros;
+	var datos=crearXMLHttpRequest();
+	datos.onreadystatechange = function(){
+		if(datos.readyState==1){
+		}
+		else if(datos.readyState==4){
+			if(datos.status==200){
+				if(datos.responseText != "null"){					
+					/*var data = $.parseJSON(datos.responseText);
+					console.log(data);*/
+					console.log(datos.responseText);
+					$("#app_nave").html(datos.responseText);
+					$('select').material_select();
+					
+				}
+			}
+			
+		}  
+	};
+	datos.open("GET", url, true);
+	datos.send(null);
+}
 
+function setMesonesFiltro(){
+	var params_nave = {};
+	var params_sector = {};
+	var i = 1;
+	$('#app_nave :selected').each(function(i, selected){ 
+	  params_nave["n"+i] = $(selected).val();
+	  i++;
+	});
+	$('#app_sector :selected').each(function(i, selected){ 
+	  params_sector["s"+i] = $(selected).val();
+	  i++;
+	});
+	var parametros_nave = jQuery.param( params_nave );
+	var parametros_sector = jQuery.param( params_sector );
+	var url= baseDir+"/inventario/get_mesones_filtro.php?"+parametros_nave+"&"+parametros_sector;
+	var datos=crearXMLHttpRequest();
+	datos.onreadystatechange = function(){
+		if(datos.readyState==1){
+		}
+		else if(datos.readyState==4){
+			if(datos.status==200){
+				if(datos.responseText != "null"){					
+					/*var data = $.parseJSON(datos.responseText);
+					console.log(data);*/
+					console.log(datos.responseText);
+					$("#meson").html(datos.responseText);
+					$('select').material_select();
+					
+				}
+			}
+			
+		}  
+	};
+	datos.open("GET", url, true);
+	datos.send(null);
+}
 
 
 

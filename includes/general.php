@@ -177,7 +177,7 @@ function show_option_campos_dev($tabla, $id_ant, $campos, $condiciones, $opcione
 /*******************************/
 //	OTROS
 /*******************************/
-function show_option($tabla, $id_ant ,$mysqli){
+function show_option($tabla, $id_ant ,$mysqli, $texto_primer_option=""){
 	if(in_array($tabla, array("op_auto_grupos", "op_tipo_contrato", "op_auto_estado", "movil_paradero", "op_monto_pactado", "socio"))){
 		$result = select($tabla, array("id", "nombre"), array("id_emp"=>$_SESSION['id_emp']), array(), $mysqli);
 	}
@@ -185,11 +185,26 @@ function show_option($tabla, $id_ant ,$mysqli){
 		$result = selectAll($tabla, array("id", "nombre"), $mysqli);	
 	}
 	?>
-	<option value=""></option>
+	<option value=""><?=$texto_primer_option?></option>
 	<?php
 	while ($arr = $result->fetch_assoc()) {
 		?>
 		<option value="<?=$arr['id']?>" <?php if($arr['id']==$id_ant){ ?>selected<?php } ?>><?=$arr['nombre']?></option>
+		<?php
+	}
+}
+
+function show_option_multiple($tabla, $id_anteriores ,$mysqli, $texto_primer_option=""){
+	$result = selectAll($tabla, array("id", "nombre"), $mysqli);	
+	if($id_anteriores == ""){
+		$id_anteriores = array();
+	}
+	?>
+	<option value="" disabled="disabled"><?=$texto_primer_option?></option>
+	<?php
+	while ($arr = $result->fetch_assoc()) {
+		?>
+		<option value="<?=$arr['id']?>" <?php if(in_array($arr['id'], $id_anteriores)){ ?>selected<?php } ?>><?=$arr['nombre']?></option>
 		<?php
 	}
 }

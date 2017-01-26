@@ -54,8 +54,8 @@ left join app_especie on app_especie.id = cod_mat_gen.especie
 left join app_propagacion on app_propagacion.id = madre.tipo_propagacion
 
 
-order by madre.id asc";
-
+order by instalacion.id desc";
+//madre.id asc
 $result = $mysqli->query($query);
 
 

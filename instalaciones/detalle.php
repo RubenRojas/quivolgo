@@ -6,7 +6,6 @@ else{
 	$baseDir = "c:/wamp/www/quivolgo/includes/";
 }
 include($baseDir."conexion.php");
-
 if(isset($_SESSION['id'])){
 	$objeto = getObjetoByNombre('INSTALACION', $mysqli);
 	$pUser = getPermisosObjeto($_SESSION['id'], $objeto['id'], $mysqli);
@@ -15,57 +14,42 @@ if(isset($_SESSION['id'])){
 else{
 	header("Location: /quivolgo/index.php");
 }
-
 if(!in_array("5", $pUser)){
 	$_SESSION['error']['mensaje'] = "No estás autorizado a acceder a esta pagina";
 	$_SESSION['error']['location'] = "/quivolgo/instalaciones/index.php";
 	header("location: /quivolgo/error/index.php");
 }
-
 extract($_GET);
 $query  = "select * from instalacion where id='$id'";
 $result = $mysqli->query($query);
 $arr = $result->fetch_assoc();
+$id_instalacion_previa = $arr['id_instalacion_previa'];
 $nId = $arr['id'];
 if($nId<10){
 	$nId = "0".$nId;
 }
-
-
 $query = "select * from madre where id= '$arr[madre]' limit 1";
 $result = $mysqli->query($query);
 $madre = $result->fetch_assoc();
-
 $cod_mat_gen = select("cod_mat_gen", array("*"), array("id"=>$madre['id_cod_mat_gen']), array("limit"=>"1"), $mysqli);
-
-
 print_head();
 print_menu();
-
-
-
 $titulo = "Detalle Instalacion";
-
 ?>
 <script>
 	var nId = "<?=$nId?>";
 </script>
 <div class="container_form">
-
 		<div class="row" id="form_instalacion">
 			<h3 class="center"><?=$titulo?></h3>
-
 			<div class="row">
 				<h5 class="center">Datos Instalacion</h5>
-
 				<div class="col s3">
 					<label for="">Cod. Instalacion</label>
 					<span class="dato"><?=$arr['cod_instalacion']?></span>
-					
 				</div>
 				<div class="col s3">
 					<label for="">Fecha</label>
-					
 					<span class="dato"><?=cambiarformatoFecha($arr['fecha'])?></span>
 				</div>
 				<div class="col s3">
@@ -76,23 +60,15 @@ $titulo = "Detalle Instalacion";
 				<div class="col s3">
 					<label for="">Cod M. Genetico</label>
 					<span class="dato"><?=get_campo("cod_mat_gen", "nombre", $madre['id_cod_mat_gen'], $mysqli)?></span>
-					
-					
 				</div>
 				<div class="col s3">
 					<label for="">Especie</label>
 					<span class="dato"><?=get_campo("app_especie", "nombre", $cod_mat_gen['especie'], $mysqli)?></span>
-					
 				</div>
-				
-
 				<div class="col s3">
 					<label for="">Estado</label>
 					<span class="dato"><?=get_campo("app_estado", "nombre", $arr['estado'], $mysqli)?></span>
-					
-					
 				</div>
-
 				<div class="col s12">
 					<div class="col s3">
 						<label for="">Origen Genetico: </label>
@@ -110,69 +86,54 @@ $titulo = "Detalle Instalacion";
 						<label for="">Fecha Madre: </label>
 						<span class="dato" id="fecha_plantacion"><?=cambiarFormatoFecha($madre['fecha_plantacion'], $mysqli)?></span>
 					</div>
-					
 				</div>
-
-
 			</div>
+			
 			<div class="row">
 				<h5 class="center">Ubicacion y Cantidades</h5>
-
 				<div class="col s3">
 					<label for="">Codigo Sector </label>
 					<span class="dato"><?=get_campo("app_sector", "nombre", $arr['sector'], $mysqli)?></span>
-					
 				</div>
-
 				<div class="col s3">
 					<label for="">Nave</label>
 					<span class="dato"><?=get_campo("app_nave", "nombre", $arr['nave'], $mysqli)?></span>
-					
 				</div>
 				<div class="col s3">
 					<label for="">Meson</label>
-					
 					<span class="dato"><?=$arr['meson']?></span>
 				</div>
 				<div class="col s3">
 					<label for="">Tipo Bandeja</label>
 					<span class="dato"><?=get_campo("app_contenedor", "nombre", $arr['tipo_contenedor'], $mysqli)?></span>
-					
 				</div>
 				<div class="col s3">
 					<label for="">Cap. Bandeja</label>
 					<span class="dato"><?=get_campo("app_contenedor", "capacidad", $arr['tipo_contenedor'], $mysqli)?></span>
-					
 				</div>
 				<div class="col s3">
 					<label for="">N° Bandejas</label>
 					<span class="dato"><?=$arr['n_contenedores']?></span>
-					
 				</div>
 				<div class="col s3">
 					<label for="">NIPLA</label>
 					<span class="dato"><?=$arr['nipla']?></span>
-					
 				</div>
 				<div class="col s3">
 					<label for="">Temporada</label>
 					<span class="dato"><?=get_campo("app_temporada", "nombre", $arr['temporada'], $mysqli)?></span>
-					
 				</div>
 				<div class="col s3">
 					<label for="">Platabanda</label>
 					<span class="dato"><?=$arr['platabanda']?></span>
-					
 				</div>
 				<div class="col s3">
 					<label for="">Instalador</label>
 					<span class="dato"><?=get_campo("app_instalador", "nombre", $arr['instalador'], $mysqli)?></span>
 				</div>
-				
 			</div>
-			
 			<div class="row">
-				<h5 class="center">Parcelas</h5>
+				<h5 >Parcelas</h5>
 				<?php
 				$query = "select 
 				instalacion_parcela.codigo, 
@@ -183,7 +144,6 @@ $titulo = "Detalle Instalacion";
 				inner join app_contenedor on app_contenedor.id = instalacion_parcela.tipo_contenedor
 				inner join app_estado on app_estado.id = instalacion_parcela.estado
 				 where id_instalacion='$id'";
-
 				$result = $mysqli->query($query);
 				$parcelas_creadas = $result->num_rows;
 				$i = 1;
@@ -212,7 +172,6 @@ $titulo = "Detalle Instalacion";
 						</tbody>
 					</table>
 				</div>
-				
 			</div>
 			<div class="row">
 				<div class="col s12">
@@ -254,7 +213,6 @@ $titulo = "Detalle Instalacion";
 			<div class="row">
 				<div class="col s12">
 					<h5>Historial Aplicaciones</h5>
-				
 					<?php
 					$query = "select id_aplicacion from aplicacion_instalacion where id_instalacion='$id' order by id_aplicacion";
 					$result = $mysqli->query($query);
@@ -272,16 +230,12 @@ $titulo = "Detalle Instalacion";
 							inner join app_categoria_aplicacion on app_categoria_aplicacion.id = aplicacion.categoria 
 							inner join producto on producto.id = aplicacion.producto
 							where aplicacion.id='$arr[id_aplicacion]' order by aplicacion.categoria, aplicacion.fecha desc";
-							
 						$res1 = $mysqli->query($query);
 						$app = $res1->fetch_assoc();
-
 						$query = "select app_componente.nombre as componente, app_componente.descripcion, aplicacion_cantidad.cantidad from aplicacion_cantidad inner join app_componente on app_componente.id = aplicacion_cantidad.componente where aplicacion_cantidad.id_aplicacion = '$app[id]'";
 						$res = $mysqli->query($query);
 						?>
 						<div class="aplicacion_historial">
-							
-
 							<div class="col s12 m6">
 								<div class="col s6">
 									<label for="">Fecha Aplicacion</label>
@@ -307,8 +261,6 @@ $titulo = "Detalle Instalacion";
 									<label for="">Ver Detalle</label>
 									<span class="dato"><a href="http://telios.cl/quivolgo/aplicaciones/detalle.php?id=<?=$app['id']?>">Ver Detalle Aplicacion</a></span>
 								</div>
-								
-							
 							</div>
 							<div class="col s12 m6">
 								<div class="col s12" style="margin-bottom: 20px;">
@@ -328,26 +280,103 @@ $titulo = "Detalle Instalacion";
 													<td><?=$arr2['descripcion']?></td>
 													<td class="numero"><?=$arr2['cantidad']?></td>
 													<td>GR</td>
-													
 												</tr>
 												<?php
 											}
 											?>
 										</tbody>
 									</table>
-									
 								</div>
 							</div>
-							
 						</div>
-
-
 						<?php				
 					}
-
 					?>
 				</div>
 			</div>
+			<div class="row">
+				<div class="col s12">
+					<h5>Historial de Movimientos</h5>
+					<h6>Ubicaciones Anteriores</h6>
+					<table id="listado_no_dataTable" >
+					<thead>
+						<th>Fecha</th>
+						<th>Sector Ant.</th>
+						<th>Sector Nvo.</th>
+						<th>Nave Ant.</th>
+						<th>Nave Nvo.</th>
+						<th>Meson Ant.</th>						
+						<th>Meson Nvo.</th>
+						<th>Instalador</th>
+					</thead>
+						<?php
+						$query = "select
+						app_instalador.nombre as instalador,
+						instalacion_reubicacion.fecha,
+						o_sector.nombre as o_sector,
+						n_sector.nombre as n_sector,
+						o_nave.nombre as o_nave,
+						n_nave.nombre as n_nave,
+						instalacion_reubicacion.o_meson,
+						instalacion_reubicacion.n_meson
+						from instalacion_reubicacion
+						inner join app_sector o_sector on o_sector.id = instalacion_reubicacion.o_sector
+						inner join app_sector n_sector on n_sector.id = instalacion_reubicacion.n_sector
+						inner join app_nave n_nave on n_nave.id = instalacion_reubicacion.n_nave
+						inner join app_nave o_nave on o_nave.id = instalacion_reubicacion.o_nave
+						inner join app_instalador on app_instalador.id = instalacion_reubicacion.instalador
+						where instalacion_reubicacion.id_instalacion = '$id'
+						";
+						$result = $mysqli->query($query);
+						while ($arr = $result->fetch_assoc()) {
+							?>
+							<tr>
+								<td><?=cambiarFormatoFecha($arr['fecha'])?></td>
+								<td><?=$arr['o_sector']?></td>
+								<td><?=$arr['n_sector']?></td>
+								<td><?=$arr['o_nave']?></td>
+								<td><?=$arr['n_nave']?></td>
+								<td><?=$arr['o_meson']?></td>								
+								<td><?=$arr['n_meson']?></td>
+								<td><?=$arr['instalador']?></td>
+							</tr>
+							<?php
+						}
+						?>					
+					</table>
+			
+			<?php
+			if($id_instalacion_previa!= 0){
+				$query = "select 
+				app_instalador.nombre as instalador,
+				i.cod_instalacion,
+				instalacion.fecha_cambio 
+				from instalacion 
+				inner join app_instalador on app_instalador.id = instalacion.instalador_cambio
+				inner join instalacion i on i.id = instalacion.id_instalacion_previa 
+				where instalacion.id = '$id' limit 1";
+				$result = $mysqli->query($query);
+				$ins_previa = $result->fetch_assoc();
+				?>
+				
+						<h6 style="margin-top: 25px;">Instalacion de Origen</h6>
+						<div class="col s4">
+							<label for="">Fecha de Cambio</label>
+							<span class="dato"><?=cambiarFormatoFecha($ins_previa['fecha_cambio'])?></span>
+						</div>
+						<div class="col s4">
+							<label for="">Instalador</label>
+							<span class="dato"><?=$ins_previa['instalador']?></span>
+						</div>
+						<div class="col s4">
+							<label for="">Cod. Inst. Previa</label>
+							<span class="dato"><a href="detalle.php?id=<?=$id_instalacion_previa?>"><?=$ins_previa['cod_instalacion']?></a></span>
+						</div>
+					</div>
+				</div>
+				<?php
+			}
+			?>
 			<div class="row">
 				<div class="col s12" style="margin-top: 50px;">					
 					<a href="Javascript:window.history.back();" class="btn red left">Volver</a>					
@@ -355,9 +384,6 @@ $titulo = "Detalle Instalacion";
 			</div>
 		</div>
 	</div>
-
-
-
 <?php
 print_footer();
 ?>

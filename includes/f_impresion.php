@@ -60,74 +60,7 @@ function print_footer(){
 }
 
 function print_menu(){
-	/*
-	?>
-	<ul id="dropdown1" class="dropdown-content">
-		<li><a class="dropdown-button" href="#!" data-activates="submenu_general">General</a></li>
-		<li><a href="/quivolgo/usuarios/index.php">Usuarios</a></li>		
-		<li><a href="/quivolgo/app_coordinador/index.php">Coordinador</a></li>	
-		<li><a href="/quivolgo/app_campo_origen/index.php">Campo Origen</a></li>	
-		<li><a href="/quivolgo/app_categoria_aplicacion/index.php">Categoría Aplicacion</a></li>	
-		<li><a href="/quivolgo/app_componente/index.php">Componente</a></li>	
-		<li><a href="/quivolgo/cod_mat_get/index.php">Codigo Mat. Gen.</a></li>	
-		<li><a href="/quivolgo/app_contenedor/index.php">Bandejas</a></li>	
-		
-		<li><a href="/quivolgo/app_especie/index.php">Especie</a></li>	
-		<li><a href="/quivolgo/app_estado_planta/index.php">Estado Planta</a></li>	
-		<li><a href="/quivolgo/app_instalador/index.php">Operadores</a></li>	
-		<li><a href="/quivolgo/app_medio_aplicacion/index.php">Medio Aplicacion</a></li>	
-		<li><a href="/quivolgo/madres/index.php">Madres</a></li>	
-		<li><a href="/quivolgo/app_nave/index.php">Nave</a></li>	
-		<li><a href="/quivolgo/app_origen_genetico/index.php">Origen Genetico</a></li>	
-		<li><a href="/quivolgo/app_propagacion/index.php">Propagacion</a></li>	
-		<li><a href="/quivolgo/app_rango/index.php">Rangos Medida</a></li>	
-		<li><a href="/quivolgo/app_sector/index.php">Sector</a></li>	
-		<li><a href="/quivolgo/app_temporada/index.php">Temporada</a></li>	
-		<li><a href="/quivolgo/app_tubete/index.php">Tubete</a></li>	
-		<li class="divider"></li>
-		<li><a href="#!">Otro</a></li>
-	</ul>
-
-	<ul id="submenu_general" class="submenu_general">
-
-		
-
-	</ul>
-
-	<!--
-	<ul id="dropdownInventario" class="dropdown-content">
-		<li><a href="/quivolgo/usuarios/index.php">Iniciar Inventario</a></li>		
-		<li><a href="/quivolgo/usuarios/index.php">Cerrar Inventario</a></li>		
-		<li><a href="/quivolgo/usuarios/index.php">Registrar Mediciones</a></li>		
-		<li><a href="/quivolgo/usuarios/index.php">Revision Medic.</a></li>		
-		<li><a href="/quivolgo/usuarios/index.php">Stock Actual</a></li>		
-		<li class="divider"></li>
-		<li><a href="#!">Otro</a></li>
-	</ul>	
-	-->
-
-	<ul id="dropdownInstalaciones" class="dropdown-content">
-		<li><a href="/quivolgo/instalaciones/registrar.php">Registrar</a></li>		
-		<li><a href="/quivolgo/instalaciones/resumen_componentes.php">Resumen Componentes Aplicados</a></li>		
-		<li><a href="/quivolgo/instalaciones/index.php">Vista General</a></li>		
-	</ul>
-
-	<nav>
-		<div class="nav-wrapper indigo">
-		<!--<a href="#" class="brand-logo right">Logo</a>-->
-		<ul id="nav-mobile" class="left hide-on-med-and-down" style="width: 100%;">
-			<li><a href="/quivolgo"><i class="fa fa-home"></i>Home</a></li>
-			
-			<li><a class="dropdown-button" href="#!" data-activates="dropdownInstalaciones"><i class="fa fa-list-alt"></i>Instalaciones <i class="fa fa-arrow-down"></i></a></li>
-
-			
-			<li><a class="dropdown-button" href="#!" data-activates="dropdown1"><i class="fa fa-cogs"></i>Opciones <i class="fa fa-arrow-down"></i></a></li>
-			<li style="float: right; "><a href="/quivolgo/login/logout.php">Cerrar Sesion</a></li>
-		</ul>
-		</div>
-	</nav>
-	<?php
-	*/
+	
 	?>
 	<nav class="teal">
 	<ul class="nav_normal">
@@ -136,12 +69,33 @@ function print_menu(){
         	<ul class="drop">        			 
 		        <li><a href="/quivolgo/instalaciones/registrar.php">Registrar</a></li>		
 				<li><a href="/quivolgo/instalaciones/resumen_componentes.php">Resumen Componentes Aplicados</a></li>		
-				<li><a href="/quivolgo/instalaciones/index.php">Vista General</a></li>	
+				<li><a href="/quivolgo/instalaciones/index.php">Vista General</a></li>
+				<li class="has-drop"><a href="#">Reinstalaciones</a>
+					<ul class="drop">
+						<li><a href="/quivolgo/instalaciones/reinstalacion_total.php">Reinstalacion Total</a></li>
+						<li><a href="/quivolgo/instalaciones/reinstalacion_parcial.php">Reinstalacion Parcial</a></li>
+					</ul>
+				</li>
         	</ul>
         </li>
-		<li><a href="/quivolgo/productos"><i class="fa fa-product-hunt" aria-hidden="true"></i>Productos</a></li>
         <li><a href="/quivolgo/aplicaciones"><i class="fa fa-check-square-o"></i>Aplicaciones</a></li>
-        <li><a href="/quivolgo/inventario/index.php"><i class="fa fa-list-alt" aria-hidden="true"></i>Inventario</a></li>
+        <li class="has-drop"><a href="#"><i class="fa fa-list-alt" aria-hidden="true"></i>Inventario</a>
+        	<ul class="drop">
+        		<li><a href="/quivolgo/inventario/index.php">Inventario en Progreso</a></li>
+        		<li><a href="/quivolgo/inventario/inventario_vigente.php">Inventario Vigente</a></li>
+        		
+        	</ul>
+        </li>
+        
+        <li class="has-drop"><a href="#"><i class="fa fa-truck" aria-hidden="true"></i>Despachos</a>
+        	<ul class="drop">
+        		<li><a href="/quivolgo/despachos/index.php">Listado Despachos</a></li>
+        	</ul>
+        	
+        </li>
+
+
+
         <li class="has-drop"><a href="#"><i class="fa fa-cogs"></i>Opciones</a>
         	<ul class="drop">        			 
 		        <li class="has-drop">
@@ -156,6 +110,7 @@ function print_menu(){
 		        	<ul class="drop">
 		        		<li><a href="/quivolgo/app_categoria_aplicacion/index.php">Categoría Aplicacion</a></li>
 		        		<li><a href="/quivolgo/app_componente/index.php">Componente</a></li>	
+		        		<li><a href="/quivolgo/productos">Productos</a></li>
 						<li><a href="/quivolgo/app_medio_aplicacion/index.php">Medio Aplicacion</a></li>
 		        	</ul>
 		        </li>
@@ -176,13 +131,14 @@ function print_menu(){
 						<li><a href="/quivolgo/app_propagacion/index.php">Propagacion</a></li>	
 						<li><a href="/quivolgo/app_rango/index.php">Rangos Medida</a></li>	
 						<li><a href="/quivolgo/app_sector/index.php">Sector</a></li>	
-						<li><a href="/quivolgo/app_temporada/index.php">Temporada</a></li>	
+						<!--<li><a href="/quivolgo/app_temporada/index.php">Temporada</a></li>	-->
 						<li><a href="/quivolgo/app_tubete/index.php">Tubete</a></li>
 		        	</ul>
 		        </li>
 					
         	</ul>
         </li>
+        <li class="right"><a href="/quivolgo/login/logout.php"><i class="fa fa-sign-out" aria-hidden="true"></i>Salir</a></li>
 	</ul>
 	</nav>
 	<?php

@@ -16,6 +16,7 @@ $parcela = select("instalacion_parcela", array("id, id_instalacion"), array("cod
 $campos = array(
 	"id_inventario"=>$inventario['id'],
 	"id_parcela"=>$parcela['id'],
+	"id_instalacion"=>$parcela['id_instalacion'],
 	"plantas_vivas"=>$plantas_vivas,
 	"plantas_muertas"=>$plantas_muertas,
 	"instalador"=>$instalador,

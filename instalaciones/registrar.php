@@ -259,11 +259,7 @@ $titulo = "Registrar Instalacion";
 	function set_codigo_instalacion(){
 
 		var sel = $("#cod_mat_gen").val();
-		/*var value = $sel.val();
-		var cod_mat_gen_2 = $("option:selected",$sel).text(); */
-
-
-		
+			
 		var anio = '<?=date("Y")?>';
 
 

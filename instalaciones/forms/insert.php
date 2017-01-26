@@ -25,6 +25,7 @@ $campos = array(
 	"nipla"=>$nipla,
 	"tipo_contenedor"=>$tipo_contenedor,
 	"temporada"=>$temporada,
+	"platabanda"=>$platabanda,
 	"n_contenedores"=>$n_contenedores,
 	"instalador"=>$instalador,
 	"cod_mat_gen"=>$arr['nombre']

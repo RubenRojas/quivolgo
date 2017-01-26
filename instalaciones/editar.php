@@ -26,6 +26,11 @@ extract($_GET);
 $query  = "select * from instalacion where id='$id'";
 $result = $mysqli->query($query);
 $arr = $result->fetch_assoc();
+
+$reubicacion = select("instalacion_reubicacion", array("id_instalacion"), array("id_instalacion"=>$arr['id']), array("limit"=>"1"), $mysqli);
+$aplicaciones = select("aplicacion_instalacion", array("id_instalacion"), array("id_instalacion"=>$arr['id']), array("limit"=>"1"), $mysqli);
+
+
 $nId = $arr['id'];
 if($nId<10){
 	$nId = "0".$nId;
@@ -46,10 +51,18 @@ print_menu();
 
 $titulo = "Editar Instalacion";
 
+if($arr['temporada']==1 and count($reubicacion)==0 and count($aplicaciones)==0){
+
+
+
+
+
+
 ?>
 <script>
 	var nId = "<?=$nId?>";
 </script>
+
 <div class="container_form">
 	<form action="forms/update.php" method="post">
 		<div class="row" id="form_instalacion">
@@ -68,7 +81,7 @@ $titulo = "Editar Instalacion";
 				</div>
 				<div class="col s3">
 					<label for="">Cod. Madre</label>
-					<select name="cod_madre" id="" onchange="get_data_madre('<?=$arr['madre']?>')">						
+					<select name="cod_madre" id="" onchange="get_data_madre(this.value)">						
 						<?=show_option_campos("madre", $arr['madre'], array("id", "cod_desc"), array() , array(), $mysqli)?>
 					</select>					
 				</div>
@@ -203,14 +216,16 @@ $titulo = "Editar Instalacion";
 			</div>
 			
 			
-			
-		
-			<div class="col s12" style="margin-top: 50px;">
-				<input type="hidden" name="parcelas_creadas" id="parcelas_creadas" value="<?=$parcelas_creadas?>">
-				<input type="hidden" name="id" value="<?=$id?>">
-				<a href="Javascript:window.history.back();" class="btn red left">Cancelar</a>
-				<input type="submit" value="Guardar" class="btn btn_sys right">
+			<div class="row">
+				<div class="col s12" style="margin-top: 50px;">
+					<input type="hidden" name="parcelas_creadas" id="parcelas_creadas" value="<?=$parcelas_creadas?>">
+					<input type="hidden" name="id" value="<?=$id?>">
+					<a href="Javascript:window.history.back();" class="btn red left">Cancelar</a>
+					<input type="submit" value="Guardar" class="btn btn_sys right">
+				</div>
 			</div>
+		
+			
 		</div>
 	</form>
 	
@@ -220,10 +235,12 @@ $titulo = "Editar Instalacion";
 	jQuery(document).ready(function($) {
 		CAPACIDAD_CONTENEDOR = <?=get_campo("app_contenedor", "capacidad", $arr['tipo_contenedor'], $mysqli)?>;
 		//$("#cod_instalacion").val("IN<?=date('Y')?>"+nId);
-		set_capacidad_contendor($("#tipo_contenedor").val());
-		
+		set_capacidad_contendor($("#tipo_contenedor").val());		
 		get_data_madre('<?=$arr['madre']?>');
-		parcelasCreadas();
+		setTimeout(function(){
+			parcelasCreadas();
+			console.log("aqafsdg");
+		}, 2500);
 		
 	});
 	var parcelas_creadas = <?=$parcelas_creadas?>;
@@ -240,16 +257,20 @@ $titulo = "Editar Instalacion";
 		var NIPLA = CAPACIDAD_CONTENEDOR;
 		var n_parcelas = parcelas_creadas;
 		var p_creadas_tmp = parcelas_creadas;
+		var sel = $("#cod_mat_gen").val();			
+		var anio = '<?=date("Y")?>';
+		var cod_parcela = sel+"-"+anio+"-"+nId;
+
+
 
 
 		for(var i=1; i<=(parseInt(p_creadas_tmp));i++){
 			if(i<10){
-				var idParcela = "PA0"+i+"IN<?=date('Y')?>"+nId;
+				var idParcela = "PA0"+i+"-"+cod_parcela;
 			}
 			else{
-				var idParcela = "PA"+i+"IN<?=date('Y')?>"+nId;
+				var idParcela = "PA"+i+"-"+cod_parcela;
 			}
-			//parcelas_creadas++;
 			
 			var row = '<tr id="'+idParcela+'" class="hoverable">'+
 			'<td class="center">'+idParcela+'</td>'+
@@ -262,10 +283,7 @@ $titulo = "Editar Instalacion";
 			$("#contenedor_parcelas").append(row);
 		}
 		console.log(parcelas_creadas);
-		$("#parcelas_creadas").val(parcelas_creadas);
-
-
-		
+		$("#parcelas_creadas").val(parcelas_creadas);	
 		
 	}
 	function crearParcelas(){
@@ -275,6 +293,9 @@ $titulo = "Editar Instalacion";
 		var NIPLA = CAPACIDAD_CONTENEDOR;
 		var n_parcelas = 1;
 		var p_creadas_tmp = parcelas_creadas;
+		var sel = $("#cod_mat_gen").val();			
+		var anio = '<?=date("Y")?>';
+		var cod_parcela = sel+"-"+anio+"-"+nId;
 
 		if(Contenedor == ""){
 			swal("Error", "Debe seleccionar un tipo de contenedor", "error");
@@ -286,10 +307,10 @@ $titulo = "Editar Instalacion";
 			else{
 				for(var i=(p_creadas_tmp+1); i<=(parseInt(p_creadas_tmp)+ parseInt(n_parcelas));i++){
 					if(i<10){
-						var idParcela = "PA0"+i+"IN"+nId;
+						var idParcela = "PA0"+i+"-"+cod_parcela;
 					}
 					else{
-						var idParcela = "PA"+i+"IN"+nId;
+						var idParcela = "PA"+i+"-"+cod_parcela;
 					}
 					parcelas_creadas++;
 					
@@ -307,19 +328,196 @@ $titulo = "Editar Instalacion";
 			}
 		}
 		console.log(parcelas_creadas);
-		$("#parcelas_creadas").val(parcelas_creadas);
-
-
-		
+		$("#parcelas_creadas").val(parcelas_creadas);	
 		
 	}
 	function remove_row(id){
 		$("#"+id).remove();
+	}
+	function set_codigo_instalacion(){
+
+		var sel = $("#cod_mat_gen").val();
+			
+		var anio = '<?=date("Y")?>';
+
+
+		$("#cod_instalacion").val(sel+"-"+anio+"-"+nId);
 	}
 
 
 </script>
 
 <?php
+}
+else{
+	?>
+	<script>
+	var nId = "<?=$nId?>";
+</script>
+
+<div class="container_form">
+	<form action="forms/update_parcelas.php" method="post">
+		<div class="row" id="form_instalacion">
+		<h3 class="center"><?=$titulo?></h3>
+		<div class="row">
+				<h5 class="center">Parcelas</h5>
+				<?php
+				$query = "select * from instalacion_parcela where id_instalacion='$id'";
+				$result = $mysqli->query($query);
+				$parcelas_creadas = $result->num_rows;
+				$i = 1;
+				?>
+				<div class="col s12">
+				
+					<div class="col s8">
+						<a href="Javascript:crearParcelas();" class="btn">Agregar</a>
+					</div>
+				</div>
+				<div class="col s12">
+					<table id="listado_no_dataTable" >
+						<thead>
+							<th>Cod. Parcela</th>
+							<th>Tipo Conten</th>
+							<th>NIPLA</th>
+							<th>Estado</th>
+							<th>Borrar</th>
+						</thead>
+						<tbody id="contenedor_parcelas">
+
+						</tbody>
+					</table>
+				</div>
+				
+			</div>
+			
+			
+			<div class="row">
+				<div class="col s12" style="margin-top: 50px;">
+					<input type="hidden" name="parcelas_creadas" id="parcelas_creadas" value="<?=$parcelas_creadas?>">
+					<input type="hidden" name="id" value="<?=$id?>">
+					<input type="hidden" name="tipo_contenedor" value="<?=$arr['tipo_contenedor']?>">
+					<input type="hidden" name="cap_contenedor" value="<?=get_campo("app_contenedor", "capacidad", $arr['tipo_contenedor'], $mysqli)?>">
+					<a href="Javascript:window.history.back();" class="btn red left">Cancelar</a>
+					<input type="submit" value="Guardar" class="btn btn_sys right">
+				</div>
+			</div>
+
+		</div>
+	</form>
+	
+</div>
+
+<script>
+	jQuery(document).ready(function($) {
+		CAPACIDAD_CONTENEDOR = <?=get_campo("app_contenedor", "capacidad", $arr['tipo_contenedor'], $mysqli)?>;
+		//$("#cod_instalacion").val("IN<?=date('Y')?>"+nId);
+		set_capacidad_contendor($("#tipo_contenedor").val());		
+		get_data_madre('<?=$arr['madre']?>');
+		parcelasCreadas();
+		
+		
+	});
+	var parcelas_creadas = <?=$parcelas_creadas?>;
+
+
+	function parcelasCreadas(){
+
+		var Contenedor = '<?=get_campo("app_contenedor", "nombre", $arr['tipo_contenedor'], $mysqli)?>';
+		var NIPLA = CAPACIDAD_CONTENEDOR;
+		var n_parcelas = parcelas_creadas;
+		var p_creadas_tmp = parcelas_creadas;
+		var sel = '<?=$arr['cod_mat_gen']?>';
+		var anio = '<?=date("Y")?>';
+		var cod_parcela = sel+"-"+anio+"-"+nId;
+
+
+
+
+		for(var i=1; i<=(parseInt(p_creadas_tmp));i++){
+			if(i<10){
+				var idParcela = "PA0"+i+"-"+cod_parcela;
+			}
+			else{
+				var idParcela = "PA"+i+"-"+cod_parcela;
+			}
+			
+			var row = '<tr id="'+idParcela+'" class="hoverable">'+
+			'<td class="center">'+idParcela+'</td>'+
+			'<td class="center">'+Contenedor+'</td>'+
+			'<td class="center">'+NIPLA+'</td>'+
+			'<td class="center">ACTIVO</td>'+
+			'<td class="center"><i class="fa fa-trash-o" aria-hidden="true" onclick="remove_row(\''+idParcela+'\')"></i></td>'+
+			'</td>'+
+			'<input type="hidden" name="parcela_'+i+'" value="'+idParcela+'"';
+			$("#contenedor_parcelas").append(row);
+		}
+		console.log(parcelas_creadas);
+		$("#parcelas_creadas").val(parcelas_creadas);	
+		
+	}
+	function crearParcelas(){
+		var $sel = $("#tipo_contenedor");
+		var value = $sel.val();
+		var Contenedor = '<?=get_campo("app_contenedor", "nombre", $arr['tipo_contenedor'], $mysqli)?>';
+		var NIPLA = CAPACIDAD_CONTENEDOR;
+		var n_parcelas = 1;
+		var p_creadas_tmp = parcelas_creadas;
+		var sel = '<?=$arr['cod_mat_gen']?>';
+		var anio = '<?=date("Y")?>';
+		var cod_parcela = sel+"-"+anio+"-"+nId;
+
+		if(Contenedor == ""){
+			swal("Error", "Debe seleccionar un tipo de contenedor", "error");
+		}
+		else{
+			if(n_parcelas==""){
+				swal("Error", "Debe ingresar un número de parcelas a crear.", "error");	
+			}
+			else{
+				for(var i=(p_creadas_tmp+1); i<=(parseInt(p_creadas_tmp)+ parseInt(n_parcelas));i++){
+					if(i<10){
+						var idParcela = "PA0"+i+"-"+cod_parcela;
+					}
+					else{
+						var idParcela = "PA"+i+"-"+cod_parcela;
+					}
+					parcelas_creadas++;
+					
+					var row = '<tr id="'+idParcela+'" class="hoverable">'+
+					'<td class="center">'+idParcela+'</td>'+
+					'<td class="center">'+Contenedor+'</td>'+
+					'<td class="center">'+NIPLA+'</td>'+
+					'<td class="center">ACTIVO</td>'+
+					'<td class="center"><i class="fa fa-trash-o" aria-hidden="true" onclick="remove_row(\''+idParcela+'\')"></i></td>'+
+					'</td>'+
+					'<input type="hidden" name="parcela_'+i+'" value="'+idParcela+'"';
+					$("#contenedor_parcelas").append(row);
+
+				}
+			}
+		}
+		console.log(parcelas_creadas);
+		$("#parcelas_creadas").val(parcelas_creadas);	
+		
+	}
+	function remove_row(id){
+		$("#"+id).remove();
+	}
+	function set_codigo_instalacion(){
+
+		var sel = $("#cod_mat_gen").val();
+			
+		var anio = '<?=date("Y")?>';
+
+
+		$("#cod_instalacion").val(sel+"-"+anio+"-"+nId);
+	}
+
+
+</script>
+
+	<?php
+}
+
 print_footer();
 ?>

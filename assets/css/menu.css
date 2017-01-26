@@ -14,14 +14,14 @@ li.has-drop > a > i{
 ul.drop li{
     float: none;
     position: relative;
-    min-width: 180px;
+    width: 190px;
     line-height: 1.4;
     border-radius: 3px;
     padding: 9px 0px;
     border-top: 1px solid rgb(238, 238, 238);
     background-color: #00796b;
     text-align: left;
-    height: 42px;
+    min-height: 42px;
     -webkit-transition: all .3s;
     -o-transition: all .3s;
     transition: all .3s;
@@ -62,8 +62,8 @@ li.has-drop:hover > .drop{ /*Primer Nivel*/
   transition: .2s all;
 }
 ul.drop > li.has-drop:hover > .drop{ /*Segundo Nivel*/
-     margin-left: 181px;
-    margin-top: -33px;
+     margin-left: 191px;
+    margin-top: -28px;
 }
 
 @media all and (max-width:400px){

@@ -31,6 +31,6 @@ if($inventario['id'] != ""){
 
 
 $_SESSION['mensaje']['tipo'] = "SUCCESS";
-$_SESSION['mensaje']['texto'] = "Se abrió el inventario correctamente";
+$_SESSION['mensaje']['texto'] = "Se cerró el inventario correctamente";
 
-header("Location: ../index.php");
+header("Location: ../inventario_vigente.php");

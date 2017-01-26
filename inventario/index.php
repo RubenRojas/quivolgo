@@ -28,7 +28,7 @@ print_head();
 print_menu();
 ?>
 <div class="container">
-	<h3 class="center">Inventarios</h3>
+	<h3 class="center">Inventario en Progreso</h3>
 	
 <?php
 
@@ -81,17 +81,38 @@ if($result->num_rows > 0){
 	AGRUPACION POR RANGO
 	*********************/
 
+
+	
+
 	$query = "select 
-	count(inventario_medicion_detalle.altura) as cantidad,
-	inventario_rango.nombre 
-	from 
-	inventario_medicion_detalle
-	inner join inventario_rango on inventario_medicion_detalle.altura between inventario_rango.valor_inicial and inventario_rango.valor_final
-	inner join inventario_medicion on inventario_medicion.id = inventario_medicion_detalle.id_medicion
-	where inventario_medicion.id_inventario='$id_inventario' 
-	group by inventario_rango.nombre
-	order by inventario_rango.id asc";
+sum(instalacion.nipla) as total
+from instalacion where id in (select 
+instalacion.id
+
+from inventario_medicion
+	inner join instalacion on instalacion.id = inventario_medicion.id_instalacion
+	where inventario_medicion.id_inventario='$id_inventario'
+group by instalacion.id)
+	";
+
+
+	$query = "select 
+							count(inventario_medicion_detalle.altura) as cantidad,
+							((count(inventario_medicion_detalle.altura) * 100) / 
+							(select count(inventario_medicion_detalle.id) from inventario_medicion_detalle inner join inventario_medicion on inventario_medicion.id = inventario_medicion_detalle.id_medicion where inventario_medicion.id_inventario='$id_inventario' )) as porcentaje,
+							
+							inventario_rango.nombre 
+							from 
+							inventario_medicion_detalle
+							inner join inventario_rango on inventario_medicion_detalle.altura between inventario_rango.valor_inicial and inventario_rango.valor_final
+							inner join inventario_medicion on inventario_medicion.id = inventario_medicion_detalle.id_medicion
+							inner join instalacion on instalacion.id = inventario_medicion.id_instalacion
+							where inventario_medicion.id_inventario='$id_inventario' 
+							group by inventario_rango.nombre
+							order by inventario_rango.id asc";
+
 	$result = $mysqli->query($query);
+	$nipla_mediciones = $result->fetch_assoc();
 
 	//hay un inventario activo
 	?>
@@ -108,7 +129,7 @@ if($result->num_rows > 0){
 			<label for="">Comentario / Observacion</label>
 			<span class="dato"><?=$inventario['observacion']?></span>
 		</div>
-		<div class="col s6">
+		<div class="col s12">
 			<div class="bloque">
 				<h5 class="center">Progreso Medicion</h5>
 				<table class="tabla_chica">
@@ -137,31 +158,20 @@ if($result->num_rows > 0){
 				</table>
 			</div>
 		</div>
-		<div class="col s6 ">
-			<div class="bloque">
-				<h5 class="center">Distribucion según alturas</h5>
-				<table class="tabla_chica">
-					<thead>
-						<th>Rango</th>
-						<th>Cantidad</th>
-					</thead>
-					<tbody>
-						<?php
-						while ($arr = $result->fetch_assoc()) {
-							?>
-							<tr>
-								<td><?=$arr['nombre']?></td>
-								<td class="numero"><?=$arr['cantidad']?></td>
-							</tr>
-							<?php
-						}
-						?>
-					</tbody>
-				</table>
-			</div>
+		<?php
+		if($porc_completado == 100){
+			?>
+			<div class="col s12">
+			<a href="cerrar_inventario.php" class="btn right red">Cerrar Inventario</a>
 		</div>
+			<?php
+		}
+		?>
+		
+		
 		
 		<div class="col s12"><hr></div>
+
 		
 		<?php
 		$query = "select 
@@ -178,6 +188,8 @@ if($result->num_rows > 0){
 		inner join inventario_medicion_detalle on inventario_medicion_detalle.id_medicion = inventario_medicion.id
 		inner join instalacion_parcela on instalacion_parcela.id = inventario_medicion.id_parcela
 		where inventario_medicion.id_inventario = '$id_inventario'";
+
+
 		if($fecha_inicial != "" and $fecha_final!=""){
 			$query .= "and inventario_medicion.fecha between '$fecha_inicial' and '$fecha_final' ";
 		}
@@ -188,6 +200,7 @@ if($result->num_rows > 0){
 		$result = $mysqli->query($query);
 		
 		?>
+		
 		<div class="col s12">
 			<h5 class="center">Mediciones</h5>
 			<a href="nueva_medicion.php" class="btn right teal" style="margin-bottom: 25px;">Nueva Medicion</a>
