@@ -170,3 +170,59 @@ margin-bottom: 20px;
 	width: 90%;
 	margin-left: 5%;
 }
+
+
+/*****************************************/
+.cod_mat_gen_append{
+    display: inline-block;
+    margin-right: 7px;
+    border: 1px solid #dcdcdc;
+    padding: 3px 9px;
+    width: 105px;
+    margin-top: 8px;
+    border-radius: 3px;
+}
+.cod_mat_gen_append i{
+	    float: right;
+    line-height: inherit;
+}
+
+/*******************************************/
+
+.input_tabla{
+	    margin: 0px !important;
+    height: 18px !important;
+    
+}
+.tabla_oferta tr td{
+    margin: 0;
+    padding: 0 5px !important;
+    height: 22px;
+    
+}
+
+.tabla_oferta_impresion tr td{
+    margin: 0;
+    padding: 0 5px !important;
+    height: 22px;
+    font-size: .85em;
+    
+}
+.tabla_oferta_impresion,
+.tabla_oferta_impresion_no_dataTable{
+    border: 1px solid #000;
+}
+.tabla_oferta_impresion tbody tr td,
+.tabla_oferta_impresion thead th,
+.tabla_oferta_impresion_no_dataTable tbody tr td,
+.tabla_oferta_impresion_no_dataTable thead th{
+    border-left: 1px solid #000;
+    border-bottom: 1px solid #000;
+    padding: 5px;
+    font-size: .85em;
+}
+
+@media print{
+
+
+}

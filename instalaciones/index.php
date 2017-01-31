@@ -44,14 +44,14 @@ app_propagacion.nombre as tipo_propagacion
 
 
 from instalacion 
-left join madre on madre.id = instalacion.madre
-left join app_estado on app_estado.id = instalacion.estado
-left join app_nave on app_nave.id = instalacion.nave
-left join app_sector on app_sector.id = instalacion.sector
-left join app_temporada on app_temporada.id = instalacion.temporada
-left join cod_mat_gen on cod_mat_gen.id = madre.id_cod_mat_gen
-left join app_especie on app_especie.id = cod_mat_gen.especie
-left join app_propagacion on app_propagacion.id = madre.tipo_propagacion
+inner join madre on madre.id = instalacion.madre
+inner join app_estado on app_estado.id = instalacion.estado
+inner join app_nave on app_nave.id = instalacion.nave
+inner join app_sector on app_sector.id = instalacion.sector
+inner join app_temporada on app_temporada.id = instalacion.temporada
+inner join cod_mat_gen on cod_mat_gen.id = madre.id_cod_mat_gen
+inner join app_especie on app_especie.id = cod_mat_gen.especie
+inner join app_propagacion on app_propagacion.id = madre.tipo_propagacion
 
 
 order by instalacion.id desc";

@@ -18,7 +18,7 @@ else{
 
 if(!in_array("1", $pUser)){
 	$_SESSION['error']['mensaje'] = "No estás autorizado a acceder a esta pagina";
-	$_SESSION['error']['location'] = "/quivolgo/app_contendor/index.php";
+	$_SESSION['error']['location'] = "/quivolgo/madres/index.php";
 	header("location: /quivolgo/error/index.php");
 }
 

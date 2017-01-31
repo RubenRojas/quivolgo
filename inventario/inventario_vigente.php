@@ -271,6 +271,9 @@ group by instalacion.cod_instalacion";
 			}
 			?>
 			<th>Total</th>
+			<th>Desp.</th>
+			<th>Disponibles</th>
+			<th>% Desp.</th>
 		</thead>
 		<tbody>
 
@@ -300,6 +303,9 @@ group by instalacion.cod_instalacion";
 					}
 					?>
 					<td class="numero"><?=number_format($arr['TOTAL'])?></td>
+					<td></td>
+					<td></td>
+					<td></td>
 				</tr>
 				<?php
 					$suma['TOTAL'] += $arr['TOTAL'];
@@ -326,6 +332,9 @@ group by instalacion.cod_instalacion";
 				}
 				?>
 				<td class="numero"><b><?=number_format($suma['TOTAL'])?></b></td>
+				<td></td>
+				<td></td>
+				<td></td>
 			</tr>
 		</tbody>
 	</table>

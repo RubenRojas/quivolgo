@@ -89,24 +89,31 @@ function print_menu(){
         
         <li class="has-drop"><a href="#"><i class="fa fa-truck" aria-hidden="true"></i>Despachos</a>
         	<ul class="drop">
-        		<li><a href="/quivolgo/despachos/index.php">Listado Despachos</a></li>
+        		<li><a href="/quivolgo/despacho/nuevo.php">Registrar Despacho</a></li>
+        		<li><a href="/quivolgo/despacho/index.php">Despachos Pendientes</a></li>
+        		<li><a href="/quivolgo/despacho/realizados.php">Despachos Realizados</a></li>
         	</ul>
         	
         </li>
 
 
 
+
+
+
+
+
+
+
         <li class="has-drop"><a href="#"><i class="fa fa-cogs"></i>Opciones</a>
         	<ul class="drop">        			 
-		        <li class="has-drop">
-		        	<a href="#">General</a>
+		        <li class="has-drop"><a href="#">General</a>
 		        	<ul class="drop">
 		        		<li><a href="/quivolgo/usuarios/index.php">Usuarios</a></li>		
 						<li><a href="/quivolgo/app_coordinador/index.php">Coordinador</a></li>	
 		        	</ul>
 		        </li>
-		        <li class="has-drop">
-		        	<a href="#">Aplicacion</a>
+		        <li class="has-drop"> <a href="#">Aplicacion</a>
 		        	<ul class="drop">
 		        		<li><a href="/quivolgo/app_categoria_aplicacion/index.php">Categoría Aplicacion</a></li>
 		        		<li><a href="/quivolgo/app_componente/index.php">Componente</a></li>	
@@ -114,8 +121,7 @@ function print_menu(){
 						<li><a href="/quivolgo/app_medio_aplicacion/index.php">Medio Aplicacion</a></li>
 		        	</ul>
 		        </li>
-		        <li class="has-drop">
-		        	<a href="#">Instalaciones</a>
+		        <li class="has-drop"> <a href="#">Instalaciones</a>
 		        	<ul class="drop">
 		        		<li><a href="/quivolgo/app_campo_origen/index.php">Campo Origen</a></li>						
 						<li><a href="/quivolgo/cod_mat_get/index.php">Codigo Mat. Gen.</a></li>	
@@ -134,6 +140,11 @@ function print_menu(){
 						<!--<li><a href="/quivolgo/app_temporada/index.php">Temporada</a></li>	-->
 						<li><a href="/quivolgo/app_tubete/index.php">Tubete</a></li>
 		        	</ul>
+		        	<li class="has-drop"> <a href="#">Despachos</a>
+			        	<ul class="drop">
+			        		<li><a href="/quivolgo/app_predio/index.php">Predios</a></li>
+			        	</ul>
+			        </li>
 		        </li>
 					
         	</ul>

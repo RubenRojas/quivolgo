@@ -1,4 +1,7 @@
 @media print{
+	.hide-on-print, .dataTables_info, .dataTables_paginate, .dataTables_length, .dataTables_filter{
+		display: none !important;
+	}
 	nav, .hide-on-print, .filtros, .btn{
 		display: none !important;
 	}
@@ -6,12 +9,13 @@
 		display: inline !important;
 	}
 	.dato{
-		border: 1px solid #dcdcdc;
-	    padding: 1px;
+		border: 1px solid #000;
+	    padding: 1px 5px;
 	    font-size: 11px;
 	    height: 19px;
 	    min-height: 0;
 	    color: #000;
+	    margin-top: 0px;
 	}
 	.row .col{
 		margin-top: 8px;
@@ -71,5 +75,8 @@
 		padding: 0px !important;
 		padding-left: 4px !important;
 	}
+
+
+	
 	
 }
